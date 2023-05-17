@@ -5,17 +5,20 @@
         <li class="nav-item">
           <p><a class="navbar" @click="this.$router.push('/')">Home</a></p>
         </li>
-        <li class="nav-item" @mouseover="this.dropdownVisible = 'auditorium'" @mouseleave="this.dropdownVisible = null">
-          <p class="navbar"><a class="navbar">Our Auditorium</a></p>
+        <li class="nav-item">
+          <p class="navbar"><a class="navbar" @click="this.$router.push('/auditorium')">Our Auditorium</a></p>
         </li>
         <li class="nav-item">
-          <p><a class="navbar" @click="this.$router.push('/projects')">About Us <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
+          <p><a class="navbar">About Us <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
         </li>
         <li class="nav-item">
           <p><a class="navbar">Book <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
         </li>
-        <li class="nav-item right-side" title="Sign in">
-          <p><a><font-awesome-icon icon="fa-solid fa-user" /></a></p>
+        <li class="nav-item">
+          <p><a class="navbar">Support Us</a></p>
+        </li>
+        <li class="nav-item right-side " title="Sign in">
+          <p><a><font-awesome-icon class="signin-icon" icon="fa-solid fa-user" @click="loginpage()" /></a></p>
         </li>
       </div>
     </ul>
@@ -25,7 +28,7 @@
       </div>
     </div>
   </header>
-  <router-view class="view" v-slot="{ Component, route }">
+  <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" :user="user">
     <Transition name="slide-fade" mode="out-in">
       <div :key="route.name">
         <component :is="Component"></component>
@@ -40,7 +43,22 @@ export default {
   name: 'App',
   data() {
     return {
-      dropdownVisible: "auditorium",
+      dropdownVisible: null,
+      user: null
+    }
+  },
+  methods: {
+    loginpage() {
+      if (this.user == null) {
+        this.$router.push('/login')
+      } else {
+        this.$router.push('/dash')
+      }
+    },
+    logUserIn(user) {
+      this.user = user
+      console.log(this.user)
+      this.$router.push('/dash')
     }
   }
 }
@@ -95,7 +113,18 @@ html {
 
 .right-side {
   margin-left: auto;
+  text-align: center;
 }
+
+.signin-icon {
+  transition: all 100ms;
+}
+
+.signin-icon:hover {
+  color: var(--mciafcsky);
+  font-size: 1.1em;
+}
+
 
 li {
   float: left;
