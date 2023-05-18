@@ -18,7 +18,7 @@
           <p><a class="navbar">Support Us</a></p>
         </li>
         <li class="nav-item right-side " title="Sign in">
-          <p><a><font-awesome-icon class="signin-icon" icon="fa-solid fa-user" @click="loginpage()" /></a></p>
+          <p><a><font-awesome-icon class="signin-icon" :icon="changeLoginIcon(user)" @click="loginpage()" /></a></p>
         </li>
       </div>
     </ul>
@@ -59,6 +59,17 @@ export default {
       this.user = user
       console.log(this.user)
       this.$router.push('/dash')
+    },
+  },
+  computed: {
+    changeLoginIcon() {
+      return function(user) {
+        if (user == null) {
+          return "fa-solid fa-user"
+        } else {
+          return "fa-solid fa-toolbox"
+        }
+      }
     }
   }
 }

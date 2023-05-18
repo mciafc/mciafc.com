@@ -10,9 +10,10 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faToolbox } from '@fortawesome/free-solid-svg-icons';
 
 
-library.add(faUserSecret, faCaretDown, faUser)
+library.add(faUserSecret, faCaretDown, faUser, faToolbox)
 
 
 let app = createSSRApp(App);
