@@ -11,9 +11,17 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faToolbox } from '@fortawesome/free-solid-svg-icons';
+import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faUsersGear } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faTicket } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 
-library.add(faUserSecret, faCaretDown, faUser, faToolbox)
+library.add(faUserSecret, faCaretDown, faUser, faToolbox, faToggleOn, faCalendar, faUsersGear, faUsers, faTicket, faGlobe, faStar, faRightFromBracket)
 
 
 let app = createSSRApp(App);
