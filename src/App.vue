@@ -22,13 +22,8 @@
         </li>
       </div>
     </ul>
-    <div class="dropdown projects" v-if="dropdownVisible == 'projects'">
-      <div class="dropdownitem">
-        <p>web</p>
-      </div>
-    </div>
   </header>
-  <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" :user="user">
+  <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
     <Transition name="slide-fade" mode="out-in">
       <div :key="route.name">
         <component :is="Component"></component>
@@ -60,6 +55,10 @@ export default {
       console.log(this.user)
       this.$router.push('/dash')
     },
+    logUserOut() {
+      this.$router.push('/')
+      this.user = null
+    }
   },
   computed: {
     changeLoginIcon() {
