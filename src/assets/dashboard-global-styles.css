@@ -1,0 +1,17 @@
+.dashboard-section {
+    text-align: center;
+    margin-top: -20px;
+}
+
+h2.section-header {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+.section-subtitle {
+    font-style: italic;
+    font-size: 0.8rem;
+    position: relative;
+    margin: 0;
+    top: -20px;
+}
