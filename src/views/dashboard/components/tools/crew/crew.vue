@@ -57,7 +57,7 @@ import io from 'socket.io-client'
             }
         },
         created() {
-            this.socket = io('http://localhost:7694/crew', {
+            this.socket = io('https://io.mciafc.com/crew', {
                 pin: this.user.pin
             })
         },
