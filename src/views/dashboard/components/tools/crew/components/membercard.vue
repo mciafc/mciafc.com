@@ -16,11 +16,11 @@
             <p>{{ userBio(user) }}</p>
         </div>
         <div class="socials">
-            <a class="social-icon"><font-awesome-icon icon="fa-solid fa-envelope" /></a>
-            <a class="social-icon" v-if="user.memberInfo.socials.instagram != null"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
-            <a class="social-icon" v-if="user.memberInfo.socials.twitter != null"><font-awesome-icon icon="fa-brands fa-twitter"  /></a>
-            <a class="social-icon" v-if="user.memberInfo.socials.facebook != null"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
-            <a class="social-icon" v-if="user.memberInfo.socials.linkedin != null"><font-awesome-icon icon="fa-brands fa-linkedin" /></a>
+            <a class="social-icon" :href="`mailto:${this.user.Email}`"><font-awesome-icon icon="fa-solid fa-envelope" /></a>
+            <a class="social-icon" :href="`https://instagram.com/${this.user.memberInfo.socials.instagram}`" target="__blank" v-if="user.memberInfo.socials.instagram != null"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
+            <a class="social-icon" :href="`https://twitter.com/${this.user.memberInfo.socials.twitter}`" target="__blank" v-if="user.memberInfo.socials.twitter != null"><font-awesome-icon icon="fa-brands fa-twitter"  /></a>
+            <a class="social-icon" :href="`https://facebook.com/${this.user.memberInfo.socials.facebook}`" target="__blank" v-if="user.memberInfo.socials.facebook != null"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
+            <a class="social-icon" :href="`https://linkedin.com/in/${this.user.memberInfo.socials.linkedin}`" target="__blank" v-if="user.memberInfo.socials.linkedin != null"><font-awesome-icon icon="fa-brands fa-linkedin" /></a>
             <a class="social-icon" v-if="loggedInUser.Email == user.Email || loggedInUser.isExec"><font-awesome-icon icon="fa-solid fa-user-pen" /></a>
         </div>
     </div>
