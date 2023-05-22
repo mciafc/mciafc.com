@@ -21,6 +21,8 @@
                 <Controls id="controls" :user="user" class="dash-section" />
                 <Divider />
                 <Events id="events" :user="user" class="dash-section" @viewEvent="openEventModal" />
+                <Divider />
+                <Crew id="crew" :user="user" class="dash-section" />
             </div>
         </div>
         <div v-else>
@@ -36,6 +38,7 @@ import Sidebar from './components/sidebar.vue'
 import Divider from './components/sectiondivider.vue'
 import Controls from './components/tools/controls/controls.vue'
 import Events from './components/tools/gigs/events.vue'
+import Crew from './components/tools/crew/crew.vue'
 
     export default {
         name: "App",
@@ -43,7 +46,8 @@ import Events from './components/tools/gigs/events.vue'
             Sidebar,
             Controls,
             Events,
-            Divider
+            Divider,
+            Crew
         },
         props: {
             user: Object

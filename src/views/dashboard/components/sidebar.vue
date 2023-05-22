@@ -11,7 +11,7 @@
                 <p><a><font-awesome-icon icon="fa-solid fa-ticket" class="sidebar-item" /></a></p>
             </li>
             <li title="Crew">
-                <p><a><font-awesome-icon v-if="user.isExec" icon="fa-solid fa-users-gear" class="sidebar-item" /><font-awesome-icon v-else icon="fa-solid fa-users" class="sidebar-item" /></a></p>
+                <p><a href="#crew"><font-awesome-icon v-if="user.isExec" icon="fa-solid fa-users-gear" class="sidebar-item" /><font-awesome-icon v-else icon="fa-solid fa-users" class="sidebar-item" /></a></p>
             </li>
             <li title="Talent Show" v-if="isTalentShowSeason()">
                 <p><a><font-awesome-icon icon="fa-solid fa-star" class="sidebar-item" /></a></p>
