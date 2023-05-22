@@ -8,8 +8,8 @@
                     <EventCard v-for="event in events" :key="event.id" :event="event" :user="user" class="clickable" @viewEvent="openEventModal" />
                 </div>
             </div>
-            <div v-else key="2">
-                <p>The events socket is not currently connected... If this issue persists, contact <b>caleb@mciafc.com</b></p>
+            <div v-else key="2" class="upcoming-event-card-container">
+                <EventCardSkeleton v-for="n in 5" :key="n" :user="user" />
             </div>
         </transition>
     </div>
@@ -18,6 +18,7 @@
 <script>
 import io from 'socket.io-client'
 import EventCard from './components/EventCard.vue'
+import EventCardSkeleton from './components/EventCardSkeleton.vue'
 
     export default {
         name: 'DashboardEvents',
@@ -25,7 +26,8 @@ import EventCard from './components/EventCard.vue'
             user: Object
         },
         components: {
-            EventCard
+            EventCard,
+            EventCardSkeleton
         },
         data() {
             return {
@@ -69,17 +71,18 @@ import EventCard from './components/EventCard.vue'
 .upcoming-event-card-container {
     display: flex;
     overflow-x: auto;
-    flex-wrap: nowrap;
     padding-bottom: 40px;
     scroll-behavior: smooth;
 }
 
-.fade-enter-active,
+.fade-enter-active {
+    transition: 500ms ease opacity;
+}
 .fade-leave-active {
-  transition: 300ms ease all;
+  transition: 750ms ease opacity;
 }
 
-.fade-enter-from
+.fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
