@@ -2,10 +2,10 @@
     <div class="dashboard-sidebar">
         <ul style="height: 100%;">
             <li title="Controls">
-                <p><a><font-awesome-icon icon="fa-solid fa-toggle-on" class="sidebar-item" /></a></p>
+                <p><a href="#controls"><font-awesome-icon icon="fa-solid fa-toggle-on" class="sidebar-item" /></a></p>
             </li>
             <li title="Events">
-                <p><a><font-awesome-icon icon="fa-solid fa-calendar" class="sidebar-item" /></a></p>
+                <p><a href="#events"><font-awesome-icon icon="fa-solid fa-calendar" class="sidebar-item" /></a></p>
             </li>
             <li title="Featured Events" v-if="user.isExec">
                 <p><a><font-awesome-icon icon="fa-solid fa-ticket" class="sidebar-item" /></a></p>
@@ -80,7 +80,7 @@ p.dashboard-sidebar {
     width: 50px;
     height: 100vh;
     position: fixed;
-    background-color: var(--mciafcgray);
+    background-color: var(--bgcolor);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 }
 
