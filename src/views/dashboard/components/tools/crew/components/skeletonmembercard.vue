@@ -95,6 +95,7 @@ export default {
     flex-wrap: wrap;
     float: right;
     font-family: 'Flow Circular', cursive;
+    animation: opacityhover 750ms infinite alternate;
 
 }
 
@@ -112,6 +113,8 @@ export default {
     height: 100px;
     vertical-align: middle;
     border-radius: 50%;
+    animation: opacityhover 750ms infinite alternate;
+
 }
 
 .userNames {
@@ -121,11 +124,15 @@ export default {
     margin-bottom: 0;
     font-family: 'Flow Circular', cursive;
     margin-top: 15px;
+    animation: opacityhover 750ms infinite alternate;
+
 }
 
 .smallerNameFont {
     font-family: 'Flow Circular', cursive;
     font-size: 25px;
+    animation: opacityhover 750ms infinite alternate;
+
 }
 
 .pronouns-position {
@@ -134,20 +141,26 @@ export default {
     display: flex;
     grid-column: 2;
     margin-top: 0;
+    
 }
 
 .pronouns-position>* {
     font-family: 'Flow Circular', cursive;
     margin-right: 5px;
+    animation: opacityhover 750ms infinite alternate;
+
 }
 
 .bio {
     font-family: 'Flow Circular', cursive;
     padding: 10px;
+    animation: opacityhover 750ms infinite alternate;
+
 }
 
 .bio > * {
     font-family: 'Flow Circular', cursive;
+    animation: opacityhover 750ms infinite alternate;
 }
 
 .socials {
@@ -181,4 +194,14 @@ export default {
     font-family: 'Flow Circular', cursive;
     width: 25px;
     margin-bottom: 5px;
-}</style>
+}
+@keyframes opacityhover {
+    0% {
+        opacity: 0.95;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+</style>
