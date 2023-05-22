@@ -4,9 +4,24 @@
             <transition name="sidebar-slide" mode="out-in">
                 <Sidebar :user="user" @logoutRequest="logout()" />
             </transition>
-            <h1>This is the dashboard page</h1>
-            <p v-if="connected.event">events connected</p>
-            <p v-if="connected.talent">talent connected</p>
+            <div class="banner">
+                <h1 class="bannertext">DASHBOARD</h1>
+            </div>
+            <div class="modals">
+                <router-view class="modals" v-slot="{ Component, route }" :user="user" appear>
+                    <transition name="modal" mode="out-in">
+                        <div :key="route.name">
+                            <component :is="Component" :user="user" />
+                        </div>
+                    </transition>
+                </router-view>
+            </div>
+            <div class="dashboard-sections">
+                <Divider />
+                <Controls id="controls" :user="user" class="dash-section" />
+                <Divider />
+                <Events id="events" :user="user" class="dash-section" @viewEvent="openEventModal" />
+            </div>
         </div>
         <div v-else>
             <h1>[403] You don't have permission to view this page</h1>
@@ -17,23 +32,18 @@
 </template>
 
 <script>
-import io from 'socket.io-client'
 import Sidebar from './components/sidebar.vue'
+import Divider from './components/sectiondivider.vue'
+import Controls from './components/tools/controls/controls.vue'
+import Events from './components/tools/gigs/events.vue'
 
     export default {
         name: "App",
         components: {
-            Sidebar
-        },
-        data() {
-            return {
-                eventsocket: null,
-                talentsocket: null,
-                connected: {
-                    event: false,
-                    talent: false
-                },
-            }
+            Sidebar,
+            Controls,
+            Events,
+            Divider
         },
         props: {
             user: Object
@@ -41,38 +51,12 @@ import Sidebar from './components/sidebar.vue'
         methods: {
             logout() {
                 this.$emit('logoutRequest')
+            },
+            openEventModal(id) {
+                this.$router.replace(`/dash/event/${id}`)
             }
         },
         emits: ['login', 'logoutRequest'],
-        created() {
-            this.eventsocket = io('https://io.mciafc.com/gigs')
-            this.talentsocket = io('https://io.mciafc.com/talent')
-
-            this.eventsocket.on('connect', () => {
-                this.connected.event = true
-                console.log("connected to event socket")
-            })
-            this.talentsocket.on('connect', () => {
-                this.connected.talent = true
-                console.log("connected to talent socket")
-            })
-
-
-
-
-            this.eventsocket.on('disconnect', () => {
-                this.connected.event = false
-                console.log("disconnected from event socket")
-            })
-            this.talentsocket.on('disconnect', () => {
-                this.connected.talent = false
-                console.log("disconnected from talent socket")
-            })
-        },
-        beforeUnmount() {
-            this.eventsocket.disconnect()
-            this.talentsocket.disconnect()
-        },
         computed: {
             isTalentShowSeason() {
                 return () => {
@@ -91,20 +75,39 @@ import Sidebar from './components/sidebar.vue'
 </script>
 
 <style lang="css" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 
-.sidebar-slide-enter-active {
-    animation: slide-in 0.3s ease;
+.banner {
+    background-size: 200% 200%;
+    background-position: 100%;
+    height: 100px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
 }
-.sidebar-slide-leave-active {
-    animation: slide-out 0.3s ease;
+
+.bannertext {
+    font-weight: 900;
+    text-shadow: 5px 5px 0px rgba(0,0,0,0.25);
 }
-@keyframes slide-in {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(0%);
-    }
+
+.dashboard-sections {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 }
+
+.dash-section {
+    width: 100%;
+}
+
 
 </style>
