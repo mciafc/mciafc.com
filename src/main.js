@@ -29,17 +29,37 @@ let app = createSSRApp(App);
 import Home from './views/home/App.vue'
 import LoginPage from './views/login/App.vue'
 import CrewDashboard from './views/dashboard/App.vue'
+import EventModal from './views/dashboard/modals/EventModal.vue'
+import OrganizerInfoModal from './views/dashboard/modals/EventOrganizerInfoModal.vue';
+import EventDeletionModal from './views/dashboard/modals/EventDeletionModal.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
     { path: '/login', component: LoginPage, name: "login" },
-    { path: '/dash', component: CrewDashboard, name: "dashboard" },
+    { path: '/dash', component: CrewDashboard, name: "dashboard", children: [
+        { path: 'event/:id', component: EventModal, name: "event", meta: { modal: true } },
+        { path: 'event/:id/organizerinfo', component: OrganizerInfoModal, name: "eventorganizerinfo", meta: { modal: true }},
+        { path: 'event/:id/delete', component: EventDeletionModal, name: "deleteEvent", meta: { modal: true }},
+    ] },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
 });
+
+router.afterEach((to, from) => {
+    const isToModal = to.meta.modal;
+    const isFromModal = from.meta.modal;
+    const toName = to.name;
+    console.log(toName)
+    if (isFromModal || isToModal) {
+        if (to.name != "dashboard") {
+            to.meta.transition = 'slide-fade'
+        }
+        to.meta.transition = 'none'
+    }
+})
 
 app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon)
