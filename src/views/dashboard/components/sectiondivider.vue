@@ -14,7 +14,7 @@
 .divider {
     width: 100%;
     height: 5px;
-    background: linear-gradient(to right, #e59d16, #ffa600, #16e5c9, #57acdc);
+    background: #292929;
     margin-top: 10px;
 }
 

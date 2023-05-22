@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-section">
-        <h2 class="section-header">EVENTS</h2>
+        <h2 class="section-header">Events</h2>
         <p class="section-subtitle">View and manage upcoming events</p>
         <transition name="fade" mode="out-in">
             <div v-if="connected" key="1">

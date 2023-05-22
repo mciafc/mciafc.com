@@ -5,7 +5,7 @@
                 <Sidebar :user="user" @logoutRequest="logout()" />
             </transition>
             <div class="banner">
-                <h1 class="bannertext">DASHBOARD</h1>
+                <h1 class="bannertext">Your Dashboard</h1>
             </div>
             <div class="modals">
                 <router-view class="modals" v-slot="{ Component, route }" :user="user" appear>
