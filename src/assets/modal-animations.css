@@ -1,0 +1,12 @@
+.modal-enter-active,
+.modal-leave-active {
+    transition: 500ms ease all;
+}
+
+.modal-enter-from {
+    scale: 0;
+}
+
+.modal-leave-to {
+    scale: 0;
+}
