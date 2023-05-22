@@ -5,7 +5,7 @@
         <div class="membercards">
             <h1>Execs</h1>
             <transition name="fade">
-                <div v-if="crew != null" key="5">
+                <div v-if="crew != null" key="5" class="card-container-container">
                     <div v-if="crew != null" key="1" class="membercards">
                         <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.execs)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
@@ -140,6 +140,11 @@ import io from 'socket.io-client'
     justify-content: center;
     float: left;
     gap: 10px;
+}
+
+.card-container-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .fade-enter-active {
