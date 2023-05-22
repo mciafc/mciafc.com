@@ -4,7 +4,7 @@
         <p class="section-subtitle">View and manage crew members</p>
         <div class="membercards">
             <h1>Execs</h1>
-            <transition name="fade">
+            <transition name="fade" mode="out-in">
                 <div v-if="crew != null" key="5" class="card-container-container">
                     <div v-if="crew != null" key="1" class="membercards">
                         <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.execs)" :key="index" :user="crewmember" :loggedInUser="user" />

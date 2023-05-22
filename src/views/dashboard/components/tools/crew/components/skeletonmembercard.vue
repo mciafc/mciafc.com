@@ -146,6 +146,10 @@ export default {
     padding: 10px;
 }
 
+.bio > * {
+    font-family: 'Flow Circular', cursive;
+}
+
 .socials {
     font-size: 25px;
     margin-bottom: 10px;
