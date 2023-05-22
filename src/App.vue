@@ -24,7 +24,7 @@
     </ul>
   </header>
   <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
-    <Transition name="slide-fade" mode="out-in">
+    <Transition :name="route.meta.transition || 'slide-fade'" :mode=" route.meta.transitionmode || 'out-in'">
       <div :key="route.name">
         <component :is="Component"></component>
       </div>
@@ -208,4 +208,5 @@ a.navbar:hover {
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(60px)
-}</style>
+}
+</style>
