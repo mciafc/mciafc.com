@@ -76,10 +76,10 @@ import EventCardSkeleton from './components/EventCardSkeleton.vue'
 }
 
 .fade-enter-active {
-    transition: 500ms ease opacity;
+    transition: 250ms ease opacity;
 }
 .fade-leave-active {
-  transition: 750ms ease opacity;
+  transition: 250ms ease opacity;
 }
 
 .fade-enter-from,
