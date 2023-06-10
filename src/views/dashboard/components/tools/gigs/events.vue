@@ -4,8 +4,11 @@
         <p class="section-subtitle">View and manage upcoming events</p>
         <transition name="fade" mode="out-in">
             <div v-if="connected" key="1">
-                <div class="upcoming-event-card-container">
+                <div class="upcoming-event-card-container" v-if="events.length > 1">
                     <EventCard v-for="event in events" :key="event.id" :event="event" :user="user" class="clickable" @viewEvent="openEventModal" />
+                </div>
+                <div v-else>
+                    <p>Nothing is scheduled right now.</p>
                 </div>
             </div>
             <div v-else key="2" class="upcoming-event-card-container">
