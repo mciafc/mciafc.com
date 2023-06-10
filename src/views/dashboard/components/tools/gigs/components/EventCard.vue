@@ -2,7 +2,7 @@
     <div class="event" v-if="event.gigName != 'do not delete this'" @click="this.$emit('viewEvent', event._id)">
         <h1 class="eventName">{{ event.gigName }}</h1>
         <h3 class="organizationName">By: {{ event.organizationName }}</h3>
-        <h4 class="dateRange">📅 {{ dateRange(event.gigStartDate, event.gigEndDate) }}</h4>
+        <h4 class="dateRange">📅 {{ dateRange(event.gigStartDate, event.gigEndDate) }} <span v-if="eventIsHappeningNow(event.gigStartDate, event.gigEndDate)" style="background-color: #FF0000; border-radius: 3px; padding-left: 5px; padding-right: 5px; margin-left: 5px;">• LIVE NOW</span></h4>
         <p class="eventLocation">📌 <b>Location:</b> {{ event.gigLocation }}</p>
         <p v-if="user.isExec" class="paidJob">💵 <b>Paid Job:</b> <span v-if="event.paidJob">Yes</span><span
                 v-else>No</span></p>
@@ -129,6 +129,20 @@
                     } catch (e) {
                         return "There was an issue finding the availabilities for this event."
                     }
+                }
+            },
+            eventIsHappeningNow() {
+                return function (start, end) {
+                    let now = new Date()
+                    let startOfEvent = new Date(start)
+                    let endOfEvent = new Date(end)
+                    console.log(now)
+                    console.log(startOfEvent)
+                    console.log(endOfEvent)
+                    if (now > startOfEvent && now < endOfEvent) {
+                        return true
+                    }
+                    return false
                 }
             }
         }
