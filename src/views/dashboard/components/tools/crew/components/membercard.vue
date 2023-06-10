@@ -7,7 +7,7 @@
                 <div class="pronouns-position">
                     <p class="pronouns" v-if="user.memberInfo.pronouns != 'Unset'"><font-awesome-icon icon="fa-solid fa-user" /> {{ user.memberInfo.pronouns.toLowerCase() }}</p>
                     <p class="division-dot" v-if="user.memberInfo.pronouns != 'Unset'"> • </p>
-                    <p class="position">{{ user.memberInfo.position.toLowerCase() }}</p>
+                    <p class="position"><font-awesome-icon icon="fa-solid fa-user" v-if="user.memberInfo.pronouns == 'Unset'" /> {{ user.memberInfo.position.toLowerCase() }}</p>
                 </div>
             </div>
             <br>
@@ -16,7 +16,7 @@
             <p>{{ userBio(user) }}</p>
         </div>
         <div class="socials">
-            <a class="social-icon" :href="`mailto:${this.user.Email}`"><font-awesome-icon icon="fa-solid fa-envelope" /></a>
+            <a class="social-icon" :href="`mailto:${this.user.Email}`" target="__blank"><font-awesome-icon icon="fa-solid fa-envelope" /></a>
             <a class="social-icon" :href="`https://instagram.com/${this.user.memberInfo.socials.instagram}`" target="__blank" v-if="user.memberInfo.socials.instagram != null"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
             <a class="social-icon" :href="`https://twitter.com/${this.user.memberInfo.socials.twitter}`" target="__blank" v-if="user.memberInfo.socials.twitter != null"><font-awesome-icon icon="fa-brands fa-twitter"  /></a>
             <a class="social-icon" :href="`https://facebook.com/${this.user.memberInfo.socials.facebook}`" target="__blank" v-if="user.memberInfo.socials.facebook != null"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
