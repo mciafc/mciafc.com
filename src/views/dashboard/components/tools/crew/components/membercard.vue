@@ -3,11 +3,11 @@
         <div class="name-and-profile-picture">
             <p><img :src="getProfilePicture(user)" class="pfp"></p>
             <div class="name-sector">
-                <h3 class="userNames" :class="{ smallerNameFont: nameLength(user) }">{{ user.FirstName }} {{ user.LastName }}</h3>
+                <h3 class="userNames" :class="{ smallerNameFont: nameLength(user) }">{{ user.FirstName }} {{ user.LastName }} <span v-if="user._id == loggedInUser._id" class="you-signifier">YOU</span></h3>
                 <div class="pronouns-position">
-                    <p class="pronouns" v-if="user.memberInfo.pronouns != 'Unset'"><font-awesome-icon icon="fa-solid fa-user" /> {{ user.memberInfo.pronouns.toLowerCase() }}</p>
+                    <p class="pronouns" v-if="user.memberInfo.pronouns != 'Unset'"><font-awesome-icon icon="fa-solid fa-user" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.pronouns.toLowerCase() }}</p>
                     <p class="division-dot" v-if="user.memberInfo.pronouns != 'Unset'"> • </p>
-                    <p class="position"><font-awesome-icon icon="fa-solid fa-user" v-if="user.memberInfo.pronouns == 'Unset'" /> {{ user.memberInfo.position.toLowerCase() }}</p>
+                    <p class="position"><font-awesome-icon icon="fa-solid fa-user" v-if="user.memberInfo.pronouns == 'Unset'" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.position.toLowerCase() }}</p>
                 </div>
             </div>
             <br>
@@ -159,6 +159,15 @@
     height: 25px;
     width: 25px;
     margin-bottom: 5px;
+}
+
+.userIsExec {
+    color: var(--mciafcorange)
+}
+
+.you-signifier {
+    color: var(--mciafcsky);
+    font-weight: 900;
 }
 
 
