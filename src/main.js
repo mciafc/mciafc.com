@@ -38,6 +38,7 @@ import CrewDashboard from './views/dashboard/App.vue'
 import EventModal from './views/dashboard/modals/EventModal.vue'
 import OrganizerInfoModal from './views/dashboard/modals/EventOrganizerInfoModal.vue';
 import EventDeletionModal from './views/dashboard/modals/EventDeletionModal.vue';
+import UserEditModal from './views/dashboard/modals/UserEditModal.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
@@ -46,6 +47,7 @@ const routes = [
         { path: 'event/:id', component: EventModal, name: "event", meta: { modal: true } },
         { path: 'event/:id/organizerinfo', component: OrganizerInfoModal, name: "eventorganizerinfo", meta: { modal: true }},
         { path: 'event/:id/delete', component: EventDeletionModal, name: "deleteEvent", meta: { modal: true }},
+        { path: 'user/:id/edit', component: UserEditModal, name: "editUser", meta: { modal: true }},
     ] },
 ];
 
