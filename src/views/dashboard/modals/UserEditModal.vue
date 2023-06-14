@@ -26,7 +26,7 @@
                     <a class="social-icon"><font-awesome-icon icon="fa-brands fa-facebook" /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.facebook" placeholder="your facebook tag (facebook.com/[this part])" maxlength="50">
                     <a class="social-icon"><font-awesome-icon icon="fa-brands fa-linkedin" /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.linkedin" placeholder="your linkedin tag (linkedin.com/in/[this part])" maxlength="100">
                 </div>
-                <button>SAVE CHANGES</button>
+                <button @click="saveData()">SAVE CHANGES</button>
             </div>
             <div v-else key="1">
                 <h1>Fetching user card...</h1>
@@ -73,6 +73,43 @@ import Backdrop from './components/backdrop.vue'
                 if (this.allowedToEditPosition()) {
                     return this.selectedusermodel.isExec = !this.selectedusermodel.isExec
                 }
+            },
+            saveData() {
+                fetch(`http://localhost:4452/crew/update/${this.selecteduser._id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        isExec: this.selectedusermodel.isExec,
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    fetch(`http://localhost:4452/crew/updatememberinfo/id/${this.selecteduser._id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            bio: this.selectedusermodel.bio,
+                            position: this.selectedusermodel.position,
+                            pronouns: this.selectedusermodel.pronouns,
+                            socials: {
+                                instagram: this.selectedusermodel.socials.instagram,
+                                twitter: this.selectedusermodel.socials.twitter,
+                                facebook: this.selectedusermodel.socials.facebook,
+                                linkedin: this.selectedusermodel.socials.linkedin
+                            }
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        this.$router.push(`/dash`)
+                    })
+                })
             }
         },
         mounted() {
