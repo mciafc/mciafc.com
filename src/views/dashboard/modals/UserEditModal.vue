@@ -75,7 +75,7 @@ import Backdrop from './components/backdrop.vue'
                 }
             },
             saveData() {
-                fetch(`http://localhost:4452/crew/update/${this.selecteduser._id}`, {
+                fetch(`https://api.mciafc.com/crew/update/${this.selecteduser._id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ import Backdrop from './components/backdrop.vue'
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    fetch(`http://localhost:4452/crew/updatememberinfo/id/${this.selecteduser._id}`, {
+                    fetch(`https://api.mciafc.com/crew/updatememberinfo/id/${this.selecteduser._id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
