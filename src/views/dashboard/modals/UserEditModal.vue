@@ -1,31 +1,40 @@
 <template>
     <div>
         <transition name="modal">
-            <div class="user-card-modal" v-if="user != null" key="2">
+            <div class="selecteduser-card-modal" v-if="selecteduser != null" key="2">
                 <div class="name-and-profile-picture">
-                    <p><img :src="getProfilePicture(user)" class="pfp"></p>
+                    <p><img :src="getProfilePicture(selecteduser)" class="pfp"></p>
                     <div class="name-sector">
-                        <h3 class="userNames" :class="{ smallerNameFont: nameLength(user) }">{{ user.FirstName }} {{ user.LastName }}</h3>
+                        <h3 class="selecteduserNames" :class="{ smallerNameFont: nameLength(selecteduser) }">{{ selecteduser.FirstName }} {{ selecteduser.LastName }}</h3>
                         <div class="pronouns-position">
-                            <p class="pronouns" v-if="user.memberInfo.pronouns != 'Unset'"><font-awesome-icon icon="fa-solid fa-user" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.pronouns.toLowerCase() }}</p>
-                            <p class="division-dot" v-if="user.memberInfo.pronouns != 'Unset'"> • </p>
-                            <p class="position"><font-awesome-icon icon="fa-solid fa-user" v-if="user.memberInfo.pronouns == 'Unset'" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.position.toLowerCase() }}</p>
+                            <p class="pronouns"><font-awesome-icon icon="fa-solid fa-user" :class="{ selecteduserIsExec: selectedusermodel.isExec, editPosition: allowedToEditPosition() }" class="execToggle" title="Toggle Exec Status (If your role is high enough)" @click="toggleExecStatus()" /> <input type="text" class="pronouns-input" max="15" v-model="selectedusermodel.pronouns" placeholder="pro/nouns"> </p>
+                            <p class="division-dot"> • </p>
+                            <p class="position" v-if="!allowedToEditPosition()">{{ selecteduser.memberInfo.position.toLowerCase() }}</p>
+                            <p v-else><select v-model="selectedusermodel.position" class="position-selector">
+                                <option v-for="(position, index) in positionsYouAreAllowedToGiveOut()" :value="position" :key="index">{{ position }}</option>
+                            </select></p>
                         </div>
                     </div>
                     <br>
                 </div>
                 <div class="bio">
-                    <p>{{ userBio(user) }}</p>
+                    <textarea v-model="selectedusermodel.bio" class="bio-textarea" maxlength="240" placeholder="your bio should go here. 240 character limit." />
                 </div>
                 <div class="socials">
-                    <a class="social-icon" :href="`mailto:${this.user.Email}`" target="__blank"><font-awesome-icon icon="fa-solid fa-envelope" /></a>
-                    <a class="social-icon" :href="`https://instagram.com/${this.user.memberInfo.socials.instagram}`" target="__blank" v-if="user.memberInfo.socials.instagram != null"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
-                    <a class="social-icon" :href="`https://twitter.com/${this.user.memberInfo.socials.twitter}`" target="__blank" v-if="user.memberInfo.socials.twitter != null"><font-awesome-icon icon="fa-brands fa-twitter"  /></a>
-                    <a class="social-icon" :href="`https://facebook.com/${this.user.memberInfo.socials.facebook}`" target="__blank" v-if="user.memberInfo.socials.facebook != null"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
-                    <a class="social-icon" :href="`https://linkedin.com/in/${this.user.memberInfo.socials.linkedin}`" target="__blank" v-if="user.memberInfo.socials.linkedin != null"><font-awesome-icon icon="fa-brands fa-linkedin" /></a>
+                    <a class="social-icon"><font-awesome-icon icon="fa-brands fa-instagram" /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.instagram" placeholder="your instagram handle (exclude the '@')" maxlength="30">
+                    <a class="social-icon"><font-awesome-icon icon="fa-brands fa-twitter"  /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.twitter" placeholder="your twitter handle (exclude the '@')" maxlength="15">
+                    <a class="social-icon"><font-awesome-icon icon="fa-brands fa-facebook" /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.facebook" placeholder="your facebook tag (facebook.com/[this part])" maxlength="50">
+                    <a class="social-icon"><font-awesome-icon icon="fa-brands fa-linkedin" /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.linkedin" placeholder="your linkedin tag (linkedin.com/in/[this part])" maxlength="100">
                 </div>
+                <button>SAVE CHANGES</button>
             </div>
-            <div v-else key="1"></div>
+            <div v-else key="1">
+                <h1>Fetching user card...</h1>
+                <p>If this is visible for an extended period of time, there may be a problem.</p>
+                <p>Try again, if it doesn't work, contact webmaster@mciafc.com</p>
+                <p>When contacting, mention: USER_API_ERROR</p>
+                <p>thanks c:</p>
+            </div>
         </transition>
         <Backdrop />
     </div>
@@ -37,11 +46,34 @@ import Backdrop from './components/backdrop.vue'
     export default {
         data() {
             return {
-                user: null,
+                selecteduser: null,
+                selectedusermodel: {
+                    bio: null,
+                    position: null,
+                    pronouns: null,
+                    isExec: null,
+                    socials: {
+                        instagram: null,
+                        twitter: null,
+                        facebook: null,
+                        linkedin: null
+                    }
+                }
             }
+        },
+        props: {
+            user: Object
         },
         components: {
             Backdrop
+        },
+        methods: {
+            toggleExecStatus() {
+                console.log(this.allowedToEditPosition())
+                if (this.allowedToEditPosition()) {
+                    return this.selectedusermodel.isExec = !this.selectedusermodel.isExec
+                }
+            }
         },
         mounted() {
             fetch('https://api.mciafc.com/crew')
@@ -49,38 +81,111 @@ import Backdrop from './components/backdrop.vue'
             .then(data => {
                 let execSearch = data.execs.find(exec => exec._id == this.$route.params.id)
                 if (execSearch != undefined) {
-                    this.user = execSearch
+                    this.selecteduser = execSearch
+                    // define the selecteduser model for dynamic text areas
+                    this.selectedusermodel.bio = this.selecteduser.memberInfo.bio
+                    this.selectedusermodel.position = this.selecteduser.memberInfo.position
+                    this.selectedusermodel.pronouns = this.selecteduser.memberInfo.pronouns
+                    this.selectedusermodel.socials.instagram = this.selecteduser.memberInfo.socials.instagram
+                    this.selectedusermodel.socials.twitter = this.selecteduser.memberInfo.socials.twitter
+                    this.selectedusermodel.socials.facebook = this.selecteduser.memberInfo.socials.facebook
+                    this.selectedusermodel.socials.linkedin = this.selecteduser.memberInfo.socials.linkedin
+                    this.selectedusermodel.isExec = this.selecteduser.isExec
                     return
                 }
-                this.user = data.members.find(member => member._id == this.$route.params.id)
+                this.selecteduser = data.members.find(member => member._id == this.$route.params.id)
+                // define the selecteduser model for dynamic text areas
+                this.selectedusermodel.bio = this.selecteduser.memberInfo.bio
+                this.selectedusermodel.position = this.selecteduser.memberInfo.position
+                this.selectedusermodel.pronouns = this.selecteduser.memberInfo.pronouns
+                this.selectedusermodel.socials.instagram = this.selecteduser.memberInfo.socials.instagram
+                this.selectedusermodel.socials.twitter = this.selecteduser.memberInfo.socials.twitter
+                this.selectedusermodel.socials.facebook = this.selecteduser.memberInfo.socials.facebook
+                this.selectedusermodel.socials.linkedin = this.selecteduser.memberInfo.socials.linkedin
+                this.selectedusermodel.isExec = this.selecteduser.isExec
             })
         },
         computed: {
             getProfilePicture() {
-                return function(user) {
-                    if (user.memberInfo.profilePicture == "null") {
+                return function(selecteduser) {
+                    if (selecteduser.memberInfo.profilePicture == "null") {
                         return "https://via.placeholder.com/250x250"
                     } else {
-                        return user.memberInfo.profilePicture
+                        return selecteduser.memberInfo.profilePicture
                     }
                 }
             },
-            userBio() {
-                return function(user) {
-                    if (user.memberInfo.bio == "Unset") {
-                        return "This user has not set a bio yet."
+            selecteduserBio() {
+                return function(selecteduser) {
+                    if (selecteduser.memberInfo.bio == "Unset") {
+                        return "This selecteduser has not set a bio yet."
                     } else {
-                        return user.memberInfo.bio
+                        return selecteduser.memberInfo.bio
                     }
                 }
             },
             nameLength() {
-                return function(user) {
-                    if (user.FirstName.length + user.LastName.length >= 20) {
+                return function(selecteduser) {
+                    if (selecteduser.FirstName.length + selecteduser.LastName.length >= 20) {
                         return true
                     } else {
                         return false
                     }
+                }
+            },
+            positionsYouAreAllowedToGiveOut() {
+                return function() {
+                    if (this.user.isExec) {
+                        // there is a hierarchy of positions that can be given out
+                        // if you are the president, you can give out any position except staff advisor
+                        // you can only give out positions that are below your position
+                        // the heirarchy is as follows:
+                        const positionHierarchy = {
+                            'Staff Advisor': 0,
+                            'President': 1,
+                            'Co-President': 2,
+                            'Vice President': 3,
+                            'Exec': 4,
+                            'Member': 5,
+                            'Webmaster': -1,
+                        }
+                        // get the position of the user
+                        let userPosition = this.user.memberInfo.position
+                        // create an array of positions that are below the user's position
+                        let positionsBelowUser = []
+                        for (let position in positionHierarchy) {
+                            if (positionHierarchy[position] >= positionHierarchy[userPosition]) {
+                                positionsBelowUser.push(position)
+                            }
+                        }
+                        // return the array of positions that are below the user's position
+                        return positionsBelowUser
+                    }
+                    return []
+                }
+            },
+            allowedToEditPosition() {
+                return function() {
+                    if (this.user.isExec) {
+                        const positionHierarchy = {
+                            'Staff Advisor': 0,
+                            'President': 1,
+                            'Co-President': 2,
+                            'Vice President': 3,
+                            'Exec': 4,
+                            'Member': 5,
+                            'Webmaster': -1,
+                        }
+                        // get the position of the user
+                        let userPosition = this.user.memberInfo.position
+                        // get the position of the selecteduser
+                        let selecteduserPosition = this.selecteduser.memberInfo.position
+
+                        if (['Staff Advisor', 'President', 'Co-President', 'Vice President'].includes(userPosition)) {
+                            return positionHierarchy[selecteduserPosition] > positionHierarchy[userPosition]
+                        }
+                    }
+                    return false
                 }
             }
         }
@@ -88,7 +193,7 @@ import Backdrop from './components/backdrop.vue'
 </script>
 
 <style lang="css" scoped>
-.user-card-modal {
+.selecteduser-card-modal {
     position: fixed;
     margin: auto;
     top: 0;
@@ -97,7 +202,7 @@ import Backdrop from './components/backdrop.vue'
     right: 0;
     background-color: #292929;
     width: 500px;
-    height: 320px;
+    height: 550px;
     z-index: 100;
     padding-top: 15px;
     border-radius: 8px;
@@ -132,7 +237,7 @@ import Backdrop from './components/backdrop.vue'
     border-radius: 50%;
 }
 
-.userNames {
+.selecteduserNames {
     font-size: 30px;
     font-weight: 900;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
@@ -165,21 +270,15 @@ import Backdrop from './components/backdrop.vue'
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
-.socials > * {
+.socials > a {
     margin-right: 10px;
     margin-left: 10px;
     color: var(--mciafcorange);
-    cursor: pointer;
     transition: all 200ms;
-}
-
-.socials > *:hover {
-    color: var(--mciafcsky);
-    scale: 1.25;
-    height: 25;
-    width: 25;
+    cursor: default;
 }
 
 .social-icon {
@@ -188,12 +287,42 @@ import Backdrop from './components/backdrop.vue'
     margin-bottom: 5px;
 }
 
-.userIsExec {
+.selecteduserIsExec {
     color: var(--mciafcorange)
 }
 
 .you-signifier {
     color: var(--mciafcsky);
     font-weight: 900;
+}
+
+.bio-textarea {
+    width: 400px;
+    height: 100px;
+    resize: none;
+    text-align: center;
+}
+
+.social-input {
+    width: 300px;
+    text-align: center;
+}
+
+.pronouns-input {
+    width: 75px;
+    text-align: center;
+}
+
+.position-selector {
+    height: 25px;
+}
+
+.editPosition {
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.editPosition:hover {
+    scale: 1.5;
 }
 </style>
