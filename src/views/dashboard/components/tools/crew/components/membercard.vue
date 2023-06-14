@@ -5,9 +5,9 @@
             <div class="name-sector">
                 <h3 class="userNames" :class="{ smallerNameFont: nameLength(user) }">{{ user.FirstName }} {{ user.LastName }} <span v-if="user._id == loggedInUser._id" class="you-signifier">YOU</span></h3>
                 <div class="pronouns-position">
-                    <p class="pronouns" v-if="user.memberInfo.pronouns != 'Unset'"><font-awesome-icon icon="fa-solid fa-user" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.pronouns.toLowerCase() }}</p>
-                    <p class="division-dot" v-if="user.memberInfo.pronouns != 'Unset'"> • </p>
-                    <p class="position"><font-awesome-icon icon="fa-solid fa-user" v-if="user.memberInfo.pronouns == 'Unset'" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.position.toLowerCase() }}</p>
+                    <p class="pronouns" v-if="user.memberInfo.pronouns != 'Unset' && user.memberInfo.pronouns != ''"><font-awesome-icon icon="fa-solid fa-user" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.pronouns.toLowerCase() }}</p>
+                    <p class="division-dot" v-if="user.memberInfo.pronouns != 'Unset' && user.memberInfo.pronouns != ''"> • </p>
+                    <p class="position"><font-awesome-icon icon="fa-solid fa-user" v-if="user.memberInfo.pronouns == 'Unset' || user.memberInfo.pronouns == ''" :class="{ userIsExec: user.isExec }" /> {{ user.memberInfo.position.toLowerCase() }}</p>
                 </div>
             </div>
             <br>
@@ -17,10 +17,10 @@
         </div>
         <div class="socials">
             <a class="social-icon" :href="`mailto:${this.user.Email}`" target="__blank"><font-awesome-icon icon="fa-solid fa-envelope" /></a>
-            <a class="social-icon" :href="`https://instagram.com/${this.user.memberInfo.socials.instagram}`" target="__blank" v-if="user.memberInfo.socials.instagram != null"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
-            <a class="social-icon" :href="`https://twitter.com/${this.user.memberInfo.socials.twitter}`" target="__blank" v-if="user.memberInfo.socials.twitter != null"><font-awesome-icon icon="fa-brands fa-twitter"  /></a>
-            <a class="social-icon" :href="`https://facebook.com/${this.user.memberInfo.socials.facebook}`" target="__blank" v-if="user.memberInfo.socials.facebook != null"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
-            <a class="social-icon" :href="`https://linkedin.com/in/${this.user.memberInfo.socials.linkedin}`" target="__blank" v-if="user.memberInfo.socials.linkedin != null"><font-awesome-icon icon="fa-brands fa-linkedin" /></a>
+            <a class="social-icon" :href="`https://instagram.com/${this.user.memberInfo.socials.instagram}`" target="__blank" v-if="user.memberInfo.socials.instagram != null && user.memberInfo.socials.instagram != ''"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
+            <a class="social-icon" :href="`https://twitter.com/${this.user.memberInfo.socials.twitter}`" target="__blank" v-if="user.memberInfo.socials.twitter != null && user.memberInfo.socials.twitter != ''"><font-awesome-icon icon="fa-brands fa-twitter"  /></a>
+            <a class="social-icon" :href="`https://facebook.com/${this.user.memberInfo.socials.facebook}`" target="__blank" v-if="user.memberInfo.socials.facebook != null && user.memberInfo.socials.facebook != ''"><font-awesome-icon icon="fa-brands fa-facebook" /></a>
+            <a class="social-icon" :href="`https://linkedin.com/in/${this.user.memberInfo.socials.linkedin}`" target="__blank" v-if="user.memberInfo.socials.linkedin != null && user.memberInfo.socials.linkedin != ''"><font-awesome-icon icon="fa-brands fa-linkedin" /></a>
             <a class="social-icon" @click="this.$router.push(`/dash/user/${user._id}/edit`)" v-if="loggedInUser.Email == user.Email || loggedInUser.isExec"><font-awesome-icon icon="fa-solid fa-user-pen" /></a>
         </div>
     </div>
