@@ -3,7 +3,7 @@
         <transition name="modal">
             <div class="selecteduser-card-modal" v-if="selecteduser != null" key="2">
                 <div class="name-and-profile-picture">
-                    <p><img :src="getProfilePicture(selecteduser)" class="pfp"></p>
+                    <profilepicture :user="selecteduser" :loggedInUser="user" ref="pfp" />
                     <div class="name-sector">
                         <h3 class="selecteduserNames" :class="{ smallerNameFont: nameLength(selecteduser) }">{{ selecteduser.FirstName }} {{ selecteduser.LastName }}</h3>
                         <div class="pronouns-position">
@@ -42,6 +42,7 @@
 
 <script>
 import Backdrop from './components/backdrop.vue'
+import profilepicture from './components/profilepicture.vue'
 
     export default {
         data() {
@@ -65,7 +66,8 @@ import Backdrop from './components/backdrop.vue'
             user: Object
         },
         components: {
-            Backdrop
+            Backdrop,
+            profilepicture
         },
         methods: {
             toggleExecStatus() {
@@ -107,7 +109,24 @@ import Backdrop from './components/backdrop.vue'
                     .then(response => response.json())
                     .then(data => {
                         console.log(data)
-                        this.$router.push(`/dash`)
+                        if (this.$refs.pfp.image != null) {
+                            fetch(`http://localhost:4452/files/crew/up/pfp/${this.selecteduser._id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    name: `${this.selecteduser._id}-profile-${new Date().getTime()}.png`,
+                                    file: this.$refs.pfp.image,
+                                    uploader: this.user
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data)
+                                this.$router.push('/dash')
+                            })
+                        }
                     })
                 })
             }
@@ -265,13 +284,6 @@ import Backdrop from './components/backdrop.vue'
     align-items: center;
     justify-content: center;
     margin-left: 10px;
-}
-
-.pfp {
-    width: 100px;
-    height: 100px;
-    vertical-align: middle;
-    border-radius: 50%;
 }
 
 .selecteduserNames {
