@@ -115,6 +115,7 @@ html {
   width: 100%;
   height: 50px;
   z-index: 1000000;
+  font-weight: 600;
 }
 
 .nav-item {
