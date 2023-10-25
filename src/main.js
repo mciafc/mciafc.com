@@ -67,6 +67,10 @@ router.afterEach((to, from) => {
         }
         to.meta.transition = 'none'
     }
+    // set the page title
+    if (toName != undefined) {
+        document.title = "Martingrove Auditorium - " + toName.charAt(0).toUpperCase() + toName.slice(1);
+    }
 })
 
 app.use(router);
