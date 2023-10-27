@@ -9,10 +9,13 @@
           <p class="navbar"><a class="navbar" @click="this.$router.push('/auditorium')">Our Auditorium</a></p>
         </li>
         <li class="nav-item">
-          <p><a class="navbar">About Us <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
+          <p><a class="navbar">Crew <!-- <font-awesome-icon icon="fa-solid fa-caret-down" />--></a></p> 
         </li>
         <li class="nav-item">
           <p><a class="navbar">Book <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
+        </li>
+        <li>
+          <p><a class="navbar">Contact</a></p>
         </li>
         <li class="nav-item">
           <p><a class="navbar">Support Us</a></p>
@@ -30,6 +33,30 @@
       </div>
     </Transition>
   </router-view>
+  <footer class="footer">
+      <div class="footer-section">
+        <p class="footer-heading">Explore</p>
+        <a class="footer-link">Auditorium</a>
+        <a class="footer-link">Book</a>
+        <a class="footer-link">Crew</a>
+      </div>
+      <div class="footer-section">
+        <p class="footer-heading">Contacts</p>
+        <a class="footer-text">50 Winterton Dr</a>
+        <a class="footer-link">Contact</a>
+        <a class="footer-link">Donate</a>
+      </div>
+      <div class="footer-section connect-section">
+        <p class="footer-heading">Connect</p>
+        <a class="footer-link" href="https://instagram.com/mci.afc" target="__blank"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
+        <a class="footer-link" href="https://www.youtube.com/@mciafc" target="__blank"><font-awesome-icon icon="fa-brands fa-youtube" /></a>
+      </div>
+      <div class="footer-section general-info right-side">
+        <p class="footer-heading">Site Info</p>
+        <p class="footer-text">Created & managed by <a class="footer-link" href="https://github.com/carreb" target="__blank"><font-awesome-icon icon-="fa-brands fa-github" />caleb</a></p>
+        <a class="footer-link" href="mailto:webmaster@mciafc.com">Webmaster Contact</a>
+      </div>
+  </footer>
 </template>
 
 <script>
@@ -76,9 +103,17 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
 
 * {
   font-family: "Inter", sans-serif;
+}
+h1, h2, h3, h4 {
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+
+.view {
+  min-height: 98vh;
 }
 
 body {
@@ -87,6 +122,8 @@ body {
   overflow-x: hidden;
   background-color: var(--bgcolor);
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
 html {
@@ -116,6 +153,7 @@ html {
   height: 50px;
   z-index: 1000000;
   font-weight: 600;
+  overflow-x: scroll;
 }
 
 .nav-item {
@@ -193,7 +231,7 @@ a.navbar:hover {
 }
 
 .view {
-  margin-top: 75px;
+  margin-top: 50px;
 }
 
 .slide-fade-enter-active,
@@ -209,5 +247,77 @@ a.navbar:hover {
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(60px)
+}
+
+.footer {
+  background-color: #191919;
+  box-shadow: 0px 0px 20px rgba(12, 12, 12, 0.75);
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  gap: 10px;
+  bottom: 0;
+  width: 100%;
+  margin-top: 50px;
+  height: 100px;
+  z-index: 1000000;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-x: scroll;
+}
+
+.footer-section {
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.footer-text {
+  color: #ffffff;
+  font-size: 0.9em;
+  margin-bottom: 0;
+  cursor:unset;
+  font-weight: 500;
+}
+
+.footer-link {
+  color: var(--mciafcorange);
+  font-size: 1em;
+  margin-bottom: 0;
+  transition: all 200ms;
+}
+
+.footer-link:hover {
+  color: var(--mciafcsky);
+  scale: 1.1;
+}
+
+.footer-heading {
+  font-size: 1.2em;
+  margin-bottom: 0;
+  font-family: 'Josefin Sans', sans-serif !important;
+  font-weight: 700;
+}
+
+.connect-section {
+  flex-direction: column;
+  align-items: center;
+}
+.connect-section > .footer-link {
+  font-size: 1.2em;
+}
+.footer-section.general-info {
+  opacity: 0.25;
+  align-self: right;
+  align-items: right;
+  margin-right: 10px;
+  width: 300px;
 }
 </style>
