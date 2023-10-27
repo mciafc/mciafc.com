@@ -25,9 +25,11 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faUserPen } from '@fortawesome/free-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 
-library.add(faUserSecret, faCaretDown, faUser, faToolbox, faToggleOn, faCalendar, faUsersGear, faUsers, faTicket, faGlobe, faStar, faRightFromBracket, faEnvelope, faInstagram, faFacebook, faTwitter, faLinkedin, faUserPen )
+library.add(faUserSecret, faCaretDown, faUser, faToolbox, faToggleOn, faCalendar, faUsersGear, faUsers, faTicket, faGlobe, faStar, faRightFromBracket, faEnvelope, faInstagram, faFacebook, faTwitter, faLinkedin, faUserPen, faYoutube, faGithub )
 
 
 let app = createSSRApp(App);
@@ -39,6 +41,7 @@ import EventModal from './views/dashboard/modals/EventModal.vue'
 import OrganizerInfoModal from './views/dashboard/modals/EventOrganizerInfoModal.vue';
 import EventDeletionModal from './views/dashboard/modals/EventDeletionModal.vue';
 import UserEditModal from './views/dashboard/modals/UserEditModal.vue';
+import FourOhFour from './views/error-pages/404.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
@@ -49,11 +52,16 @@ const routes = [
         { path: 'event/:id/delete', component: EventDeletionModal, name: "deleteEvent", meta: { modal: true }},
         { path: 'user/:id/edit', component: UserEditModal, name: "editUser", meta: { modal: true }},
     ] },
+    { path: '/:pathMatch(.*)*', component: FourOhFour, name: "404"}
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior(to, from, savedPosition) {
+        console.log(to, from, savedPosition);
+        return { top: 0 }
+    }
 });
 
 router.afterEach((to, from) => {
