@@ -114,6 +114,7 @@ h1, h2, h3, h4 {
 
 .view {
   min-height: 98vh;
+  margin: 0;
 }
 
 body {
@@ -153,7 +154,8 @@ html {
   height: 50px;
   z-index: 1000000;
   font-weight: 600;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .nav-item {
@@ -236,22 +238,19 @@ a.navbar:hover {
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: 300ms ease all;
+  transition: 200ms ease all;
 }
 
 .slide-fade-enter-from {
   opacity: 0;
-  transform: translateX(-60px)
 }
 
 .slide-fade-leave-to {
   opacity: 0;
-  transform: translateX(60px)
 }
 
 .footer {
   background-color: #191919;
-  box-shadow: 0px 0px 20px rgba(12, 12, 12, 0.75);
   display: flex;
   flex-direction: row;
   align-items: left;
@@ -267,7 +266,7 @@ a.navbar:hover {
   padding-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .footer-section {
