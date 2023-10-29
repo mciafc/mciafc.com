@@ -59,7 +59,15 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
     scrollBehavior(to, from, savedPosition) {
-        console.log(to, from, savedPosition);
+        console.log("to " + to.name)
+        console.log("from " + from.name)
+        console.log("savedpos " + savedPosition)
+        if (from.name == "dashboard" || to.name == "dashboard") {
+            if (to.name == "home") {
+                return { top: 0 }
+            }
+            return
+        }
         return { top: 0 }
     }
 });
