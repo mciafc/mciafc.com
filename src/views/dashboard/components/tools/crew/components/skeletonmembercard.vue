@@ -122,7 +122,7 @@ export default {
     font-weight: 900;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     margin-bottom: 0;
-    font-family: 'Flow Circular', cursive;
+    font-family: 'Flow Circular', cursive !important;
     margin-top: 15px;
     animation: opacityhover 750ms infinite alternate;
 
