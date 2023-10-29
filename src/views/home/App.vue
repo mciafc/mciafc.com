@@ -48,7 +48,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    user-select: none;
 }
 .banner {
     height: 300px;
@@ -56,12 +55,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
 }
 .banner-image {
     height: 300px;
     width: 100%;
     object-fit: cover;
     position: absolute;
+    margin: 0;
     z-index: 0;
 }
 
@@ -72,7 +73,7 @@
     object-fit: scale-down;
     z-index: 5;
     position: absolute;
-    opacity: 0.75;
+    opacity: 0.9;
 }
 
 .section-heading {
