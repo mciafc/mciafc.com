@@ -47,10 +47,10 @@ const routes = [
     { path: '/', component: Home, name: "home" },
     { path: '/login', component: LoginPage, name: "login" },
     { path: '/dash', component: CrewDashboard, name: "dashboard", children: [
-        { path: 'event/:id', component: EventModal, name: "event", meta: { modal: true } },
-        { path: 'event/:id/organizerinfo', component: OrganizerInfoModal, name: "eventorganizerinfo", meta: { modal: true }},
-        { path: 'event/:id/delete', component: EventDeletionModal, name: "deleteEvent", meta: { modal: true }},
-        { path: 'user/:id/edit', component: UserEditModal, name: "editUser", meta: { modal: true }},
+        { path: 'event/:id', component: EventModal, name: "dashboard - Event", meta: { modal: true } },
+        { path: 'event/:id/organizerinfo', component: OrganizerInfoModal, name: "dashboard - Event Organizer Info", meta: { modal: true }},
+        { path: 'event/:id/delete', component: EventDeletionModal, name: "dashboard - Delete Event", meta: { modal: true }},
+        { path: 'user/:id/edit', component: UserEditModal, name: "dashboard - Edit User", meta: { modal: true }},
     ] },
     { path: '/:pathMatch(.*)*', component: FourOhFour, name: "404"}
 ];
@@ -62,8 +62,8 @@ const router = createRouter({
         console.log("to " + to.name)
         console.log("from " + from.name)
         console.log("savedpos " + savedPosition)
-        if (from.name == "dashboard" || to.name == "dashboard") {
-            if (to.name == "home") {
+        if (from.name.startsWith("dashboard") || to.name.startsWith("dashboard")) {
+            if (!to.name.startsWith("dashboard")) {
                 return { top: 0 }
             }
             return
