@@ -4,7 +4,7 @@
         <p class="section-subtitle">View and manage upcoming events</p>
         <transition name="fade" mode="out-in">
             <div v-if="connected" key="1">
-                <div class="upcoming-event-card-container" v-if="events.length > 1">
+                <div class="upcoming-event-card-container" v-if="events.length > 0">
                     <EventCard v-for="event in events" :key="event.id" :event="event" :user="user" class="clickable" @viewEvent="openEventModal" />
                 </div>
                 <div v-else>
@@ -76,6 +76,7 @@ import EventCardSkeleton from './components/EventCardSkeleton.vue'
     overflow-x: auto;
     padding-bottom: 40px;
     scroll-behavior: smooth;
+    justify-content: center;
 }
 
 .fade-enter-active {

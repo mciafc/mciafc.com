@@ -152,8 +152,6 @@
 <style lang="css" scoped>
 .event {
     background-color: #31303080;
-    box-shadow: .8rem .8rem 1.4rem #1a1a1a,
-        -.2rem -.2rem 1.8rem #272727;
     backdrop-filter: blur(8px);
     color: #fff;
     float: left;
@@ -164,7 +162,7 @@
     padding-left: 20px;
     padding-right: 20px;
     flex: 0 0 auto;
-    height: 400px;
+    height: 350px;
     overflow-x: hidden;
     width: 400px;
     margin: 20px;
