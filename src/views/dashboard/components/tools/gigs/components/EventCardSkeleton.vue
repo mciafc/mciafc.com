@@ -152,11 +152,11 @@ export default {
     overflow-x: hidden;
     width: 400px;
     margin: 20px;
-    font-family: 'Flow Circular', cursive;
+    font-family: 'Flow Circular', cursive !important;
 }
 
 .event > * {
-    font-family: 'Flow Circular', cursive;
+    font-family: 'Flow Circular', cursive !important;
     font-weight: 400;
 }
 
@@ -195,7 +195,7 @@ button {
     color: white;
     transition: all 200ms;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
     position: relative;
 }
 

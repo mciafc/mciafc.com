@@ -21,7 +21,7 @@
         </div>
         <div class="section4">
             <h1 class="section-heading">Events</h1>
-            <p class="bodytext">The AFC is a major part of all school events at Martingrove, we run the tech for all assemblies in the school, and for events like Relay for Life, Nuit Blanche, and Carnival. We also run our own show, the Winter Talent Show every December. We do work with third parties who get permits through the TDSB. We have run events with groups like the Etobicoke Philharmonic Orchestra, as well as run a Mayoral Debate for the 2023 Toronto mayoral by-election.</p>
+            <p class="bodytext">The AFC is a major part of all school events at Martingrove, we run the tech for all assemblies in the school, and for events like Relay for Life, Nuit Blanche, and Carnival. We also run our own show, the Winter Talent Show, every December. We do work with third parties who get permits through the TDSB. We have run events with groups like the Etobicoke Philharmonic Orchestra, as well as run a Mayoral Debate for the 2023 Toronto mayoral by-election.</p>
             <p class="bodytext">Do you have an event that you want to run in our aud, or need us to support your event with lighting or audio tech? Click the button which pertains to your organization and get in contact with us from there.</p>
             <button class="btn">IN SCHOOL ORGANIZATION</button>
             <button class="btn">THIRD PARTY ORGANIZATION</button>

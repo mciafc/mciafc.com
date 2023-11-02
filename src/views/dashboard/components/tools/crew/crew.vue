@@ -13,6 +13,8 @@
                         <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
                     </div>
                     <h1>Goons</h1>
+                    <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
+                    <br>
                     <div v-if="crew != null" key="2" class="membercards">
                         <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.members)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
@@ -157,6 +159,19 @@ import io from 'socket.io-client'
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.new-goon-button {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    color: var(--mciafcorange);
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.new-goon-button:hover {
+    color: var(--mciafcsky);
+    scale: 1.25;
 }
 
 
