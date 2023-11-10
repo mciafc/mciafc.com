@@ -133,9 +133,9 @@ h1, h2, h3, h4 {
 body {
   margin-left: 0;
   margin-top: 0;
-  overflow-x: hidden;
   background-color: var(--bgcolor);
   color: #ffffff;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -172,6 +172,8 @@ html {
 }
 
 .nav-item {
+  width: fit-content;
+  text-wrap: nowrap;
   margin-bottom: 15px;
 }
 
@@ -217,6 +219,7 @@ ul {
 .navbox {
   display: flex;
   flex-wrap: nowrap;
+  overflow-x: scroll;
 }
 
 a.navbar {

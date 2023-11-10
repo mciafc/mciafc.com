@@ -4,12 +4,10 @@
             <img src="logo_white.png" alt="" class="logo">
             <img src="aud.jpg" alt="Banner image of the Auditorium Seats" class="banner-image">
         </div>
-        <h1 class="section-heading">Martingrove Auditorium Facilities Crew</h1>
         <div class="section1">
-            <div>
-                <p class="section1 bodytext">Martingrove Collegiate Institute has one of the best auditoriums in the Etobicoke area. Third party and in-school shows and performances are run here often. The AFC (Auditorium Facilities Crew) runs all the technology and organizes shows with the parties who are running them. Want to run a show in our auditorium? Check out the auditorium specifications, meet our team, and book a time by navigating to the respective portions of the website.</p>
-                <img class="section1image" v-lazy="'soundboard-compress2.JPG'">
-            </div>
+            <h1 class="section-heading">Martingrove Auditorium Facilities Crew</h1>
+            <p class="section1 bodytext">Martingrove Collegiate Institute has one of the best auditoriums in the Etobicoke area. Third party and in-school shows and performances are run here often. The AFC (Auditorium Facilities Crew) runs all the technology and organizes shows with the parties who are running them. Want to run a show in our auditorium? Check out the auditorium specifications, meet our team, and book a time by navigating to the respective portions of the website.</p>
+            <!-- <img class="section1image" v-lazy="'soundboard-compress2.JPG'"> -->
         </div>
         <div class="section2">
             <h1 class="section-heading">Our Auditorium</h1>
@@ -85,17 +83,15 @@
 
 .section1 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     width: 85%;
-    gap: 20px;
+    text-align: center;
 }
 .bodytext {
     font-size: 1.1em;
 }
 .section1.bodytext {
-    float: left;
-    height: 400px;
     font-size: 1.2em;
 }
 

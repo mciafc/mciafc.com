@@ -328,6 +328,15 @@ span {
     z-index: 10;
 }
 
+@media (max-width:960px) {
+    .title {
+        font-size: 2.5em;
+    }
+    .presents {
+        font-size: 1.5em;
+    }
+}
+
 a.hoverable:hover {
     color: var(--mciafcsky);
     transition: all 200ms;
