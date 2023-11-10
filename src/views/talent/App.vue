@@ -279,6 +279,15 @@ import io from "socket.io-client";
     resize: none;
 }
 
+@media (max-width:960px) {
+    .text-input {
+        width: 300px;
+    }
+    .textarea-input {
+        width: 300px;
+    }
+}
+
 span {
     font-family: 'Josefin Sans', sans-serif !important;
 }
