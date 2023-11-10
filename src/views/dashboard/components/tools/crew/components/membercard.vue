@@ -170,7 +170,7 @@
     font-weight: 900;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 500px) {
     .crew-member-card {
         width: 100%;
         height: auto;

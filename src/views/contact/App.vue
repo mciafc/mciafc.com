@@ -204,10 +204,6 @@ a.hoverable:hover {
     transition: all 200ms;
 }
 
-.card {
-    scale: 0.95;
-}
-
 @media (max-width:960px) {
     .title {
         font-size: 2.5em;
