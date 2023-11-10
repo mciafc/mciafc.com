@@ -18,11 +18,11 @@
           <p><a class="navbar">Book <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
         </li>
         <li>
-          <p><a class="navbar">Contact</a></p>
+          <p><a class="navbar" @click="this.$router.push('/contact')">Contact</a></p>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <p><a class="navbar">Support Us</a></p>
-        </li>
+        </li> -->
         <li class="nav-item right-side " title="Sign in">
           <p><a><font-awesome-icon class="signin-icon" :icon="changeLoginIcon(user)" @click="loginpage()" /></a></p>
         </li>
@@ -57,7 +57,7 @@
       <div class="footer-section general-info right-side">
         <p class="footer-heading">Site Info</p>
         <p class="footer-text">Created & managed by <a class="footer-link" href="https://github.com/carreb" target="__blank"><font-awesome-icon icon-="fa-brands fa-github" />caleb</a></p>
-        <a class="footer-link" href="mailto:webmaster@mciafc.com">Webmaster Contact</a>
+        <a class="footer-link" href="mailto:webadmin@mciafc.com">Webmaster Contact</a>
       </div>
   </footer>
 </template>

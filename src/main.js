@@ -44,6 +44,7 @@ import EventDeletionModal from './views/dashboard/modals/EventDeletionModal.vue'
 import UserEditModal from './views/dashboard/modals/UserEditModal.vue';
 import FourOhFour from './views/error-pages/404.vue';
 import Talent from './views/talent/App.vue';
+import ContactPage from './views/contact/App.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
@@ -55,6 +56,7 @@ const routes = [
         { path: 'user/:id/edit', component: UserEditModal, name: "dashboard - Edit User", meta: { modal: true }},
     ] },
     { path: '/talent', component: Talent, name: "Talent Show"},
+    { path: '/contact', component: ContactPage, name: "Contact"},
     { path: '/:pathMatch(.*)*', component: FourOhFour, name: "404"}
 ];
 
