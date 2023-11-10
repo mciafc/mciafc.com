@@ -63,6 +63,9 @@ const router = createRouter({
         console.log("to " + to.name)
         console.log("from " + from.name)
         console.log("savedpos " + savedPosition)
+        if (from.name == undefined) {
+            return
+        }
         if (from.name.startsWith("dashboard") || to.name.startsWith("dashboard")) {
             if (!to.name.startsWith("dashboard")) {
                 return { top: 0 }
@@ -90,7 +93,11 @@ router.afterEach((to, from) => {
     }
 })
 
+import VueLazyload from 'vue-lazyload';
+
+
 app.use(router);
+app.use(VueLazyload)
 app.component("font-awesome-icon", FontAwesomeIcon)
 
 

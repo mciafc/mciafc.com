@@ -44,7 +44,7 @@
                     let now = new Date()
                     let month = now.getMonth()
                     // if it's between november and december, it's talent show season
-                    if (month >= 11 && month <= 12) {
+                    if (month == 10 || month == 11) {
                         return true
                     } else {
                         return false
