@@ -2,7 +2,7 @@
     <div class="contact">
         <div class="banner">
             <h1 class="title">GET IN CONTACT</h1>
-            <img src="contact_banner.jpg" alt="Banner image of the Auditorium Cabinet" class="banner-image">
+            <v-lazy-image src="contact_banner.jpg" alt="Banner image of the Auditorium Cabinet" class="banner-image" />
         </div>
         <div class="centerer">
             <div class="contact-container">

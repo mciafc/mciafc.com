@@ -1,10 +1,10 @@
 <template>
     <div class="talentpage">
         <div class="banner">
-            <img src="logo_white_crop.png" alt="" class="logo">
+            <v-lazy-image src="logo_white_crop.png" alt="" class="logo" />
             <h3 class="presents">PRESENTS</h3>
             <h1 class="title">WINTER TALENT SHOW</h1>
-            <img src="talent show banner.jpg" alt="AFC Presents: Winter Talent Show" class="banner-image">
+            <v-lazy-image src="talent show banner.jpg" alt="AFC Presents: Winter Talent Show" class="banner-image" />
         </div>
         <div class="signup-form-container" v-if="!registrationComplete">
             <div class="signup-form" v-if="!registrationComplete && signupsOpen">

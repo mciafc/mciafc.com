@@ -97,11 +97,10 @@ router.afterEach((to, from) => {
     }
 })
 
-import VueLazyload from 'vue-lazyload';
-
+import vLazyImage from 'v-lazy-image';
 
 app.use(router);
-app.use(VueLazyload)
+app.component('v-lazy-image', vLazyImage);
 app.component("font-awesome-icon", FontAwesomeIcon)
 
 

@@ -1,8 +1,8 @@
 <template>
     <div class="homepage">
         <div class="banner">
-            <img src="logo_white_crop.png" alt="" class="logo">
-            <img src="aud.jpg" alt="Banner image of the Auditorium Seats" class="banner-image">
+            <v-lazy-image src="logo_white_crop.png" alt="" class="logo" />
+            <v-lazy-image src="aud.jpg" alt="Banner image of the Auditorium Seats" class="banner-image" />
         </div>
         <div class="section1">
             <h1 class="section-heading">Martingrove Auditorium Facilities Crew</h1>
