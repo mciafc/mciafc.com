@@ -6,7 +6,7 @@
         </div>
         <div class="centerer">
             <div class="contact-container">
-                <h1 class="contact-header">General Inquiry, Booking</h1>
+                <h1 class="contact-header">General Inquiry & Booking</h1>
                 <p class="contact-subtext">For general inquiries and third party booking, please contact <a class="hoverable" href="mailto:execs@mciafc.com" target="__blank">execs@mciafc.com</a>. This will get your message across to all Senior Executive members. Please allow up to 24 hours for a response.</p>
                 <h1 class="contact-header">Exec Contact</h1>
                 <p class="contact-subtext">If you need to contact a specific Senior Executive member, their contact information is below.</p>

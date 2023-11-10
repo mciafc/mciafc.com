@@ -170,5 +170,18 @@
     font-weight: 900;
 }
 
+@media (max-width: 960px) {
+    .crew-member-card {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .name-and-profile-picture {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 
 </style>
