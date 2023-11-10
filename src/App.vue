@@ -5,6 +5,9 @@
         <li class="nav-item">
           <p><a class="navbar" @click="this.$router.push('/')">Home</a></p>
         </li>
+        <li class="nav-item" v-if="isTalentShowSeason">
+          <p><a class="navbar" @click="this.$router.push('/talent')">Talent Show</a></p>
+        </li>
         <li class="nav-item">
           <p class="navbar"><a class="navbar" @click="this.$router.push('/auditorium')">Our Auditorium</a></p>
         </li>
@@ -94,6 +97,16 @@ export default {
           return "fa-solid fa-user"
         } else {
           return "fa-solid fa-toolbox"
+        }
+      }
+    },
+    isTalentShowSeason() {
+      return function() {
+        let month = new Date().getMonth()
+        if (month == 10 || month == 11) {
+          return true
+        } else {
+          return false
         }
       }
     }
