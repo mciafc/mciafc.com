@@ -11,11 +11,11 @@
                 <h1 class="contact-header">Exec Contact</h1>
                 <p class="contact-subtext">If you need to contact a specific Senior Executive member, their contact information is below.</p>
                 <div class="exec-contact-info-container" v-if="execsLoaded">
-                    <MemberCard v-for="exec in sortCrew(execs.execs)" :user="exec" :key="exec.id" :loggedInUser="fakeuser" />
+                    <MemberCard class="card" v-for="exec in sortCrew(execs.execs)" :user="exec" :key="exec.id" :loggedInUser="fakeuser" />
                 </div>
                 <h1 class="contact-header">Website Contact</h1>
                 <p class="contact-subtext">For questions, comments, concerns, quips, quibbles, conundrums, or connections relating to the AFC website, reach our Web Director <a class="hoverable" href="mailto:webadmin@mciafc.com">webadmin@mciafc.com</a>. This email should only be used for website conerns.</p>
-                <MemberCard :user="findWebmaster(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded"></MemberCard>
+                <MemberCard class="card" :user="findWebmaster(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded"></MemberCard>
             </div>
         </div>
     </div>
@@ -197,12 +197,15 @@ import io from "socket.io-client"
 .contact-subtext {
     margin-top: 10px;
     font-size: 1.2em;
-    width: 800px;
 }
 
 a.hoverable:hover {
     color: var(--mciafcsky);
     transition: all 200ms;
+}
+
+.card {
+    scale: 0.95;
 }
 
 @media (max-width:960px) {
