@@ -347,6 +347,12 @@ span {
     }
 }
 
+@media (max-width: 500px) {
+    .banner {
+        margin-bottom: 60px;
+    }
+}
+
 a.hoverable:hover {
     color: var(--mciafcsky);
     transition: all 200ms;
