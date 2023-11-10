@@ -303,6 +303,7 @@ span {
     justify-content: center;
     text-align: center;
     margin: 0;
+    margin-bottom: 30px;
 }
 .banner-image {
     position: absolute;

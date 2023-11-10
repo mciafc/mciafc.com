@@ -142,6 +142,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .unselectable {
@@ -174,6 +175,7 @@ html {
 .nav-item {
   width: fit-content;
   text-wrap: nowrap;
+  white-space: nowrap;
   margin-bottom: 15px;
 }
 
