@@ -77,6 +77,14 @@
     opacity: 0.9;
 }
 
+@media (max-width: 960px) {
+    .logo {
+        height: 300px;
+        width: 300px;
+    }
+
+}
+
 .section-heading {
     font-size: 3em;
 }
