@@ -71,7 +71,7 @@
 .logo {
     height: 500px;
     width: 500px;
-    object-fit: scale-down;
+    object-fit: contain;
     z-index: 5;
     position: absolute;
     opacity: 0.9;
