@@ -79,8 +79,8 @@
 
 @media (max-width: 960px) {
     .logo {
-        height: 350px;
-        width: 350px;
+        height: 400px;
+        width: 400px;
     }
 
 }
