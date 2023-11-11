@@ -68,39 +68,24 @@ import io from "socket.io-client"
                         'Member': 5,
                         'Webmaster': 6,
                     }
-                    // Remove the Webmaster from the list of members
-                    crew = crew.filter((member) => {
-                        return member.memberInfo.position !== 'Webmaster'
+
+                    return crew.sort((a, b) => {
+                        // Sort by role position
+                        const positionComparison = positionHierarchy[a.memberInfo.position] - positionHierarchy[b.memberInfo.position]
+                        if (positionComparison !== 0) {
+                            return positionComparison
+                        }
+                        // Sort by last name
+                        const lastNameComparison = a.LastName.localeCompare(b.LastName)
+                        if (lastNameComparison !== 0) {
+                            return lastNameComparison
+                        }
+                        // Sort by first name
+                        return a.FirstName.localeCompare(b.FirstName)
                     })
 
-                    let sortedList = []
-                    // sort by first name
-                    sortedList = crew.sort((a, b) => {
-                        if (a.FirstName < b.FirstName) {
-                            return -1
-                        } else if (a.FirstName > b.FirstName) {
-                            return 1
-                        } else {
-                            return 0
-                        }
-                    })
-                    // sort by last name
-                    sortedList = crew.sort((a, b) => {
-                        if (a.LastName < b.LastName) {
-                            return -1
-                        } else if (a.LastName > b.LastName) {
-                            return 1
-                        } else {
-                            return 0
-                        }
-                    })
-                    // sort by role position
-                    sortedList = crew.sort((a, b) => {
-                        return positionHierarchy[a.memberInfo.position] - positionHierarchy[b.memberInfo.position]
-                    })
-                    return sortedList
-            }
-        },
+                }
+        }
         findWebmaster() {
             return (crew) => {
                 // get a list of all the webmasters
