@@ -10,7 +10,7 @@
                         <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.execs)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="3" class="membercards">
-                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
+                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
                     </div>
                     <h1>Goons</h1>
                     <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
@@ -19,16 +19,16 @@
                         <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.members)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="4" class="membercards">
-                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
+                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
                     </div>
                 </div>
                 <div v-else key="6">
                     <div key="3" class="membercards">
-                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
+                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
                     </div>
                     <h1>Members</h1>
                     <div key="4" class="membercards">
-                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
+                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
                     </div>
                 </div>
             </transition>
