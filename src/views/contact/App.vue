@@ -8,14 +8,26 @@
             <div class="contact-container">
                 <h1 class="contact-header">General Inquiry & Booking</h1>
                 <p class="contact-subtext">For general inquiries and third party booking, please contact <a class="hoverable" href="mailto:execs@mciafc.com" target="__blank">execs@mciafc.com</a>. This will get your message across to all Senior Executive members. Please allow up to 24 hours for a response.</p>
-                <h1 class="contact-header">Exec Contact</h1>
+                <h1 class="contact-header">Staff Advisor</h1>
+                <p class="contact-subtext">If you need to talk to somebody who has connections to the school administration, your best bet is by talking to our Staff Advisor.</p>
+                <transition name="fade" mode="out-in">
+                    <MemberCard class="card" :user="findStaffAdvisor(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded" key="0"></MemberCard><skeletonmembercard key="1" v-else />
+                </transition>
+                <h1 class="contact-header">Student Executives</h1>
                 <p class="contact-subtext">If you need to contact a specific Senior Executive member, their contact information is below.</p>
-                <div class="exec-contact-info-container" v-if="execsLoaded">
-                    <MemberCard class="card" v-for="exec in sortCrew(execs.execs)" :user="exec" :key="exec.id" :loggedInUser="fakeuser" />
-                </div>
+                <transition name="fade" mode="out-in">
+                    <div class="exec-contact-info-container" v-if="execsLoaded" key="0">
+                        <MemberCard class="card" v-for="exec in sortCrew(execs.execs).slice(1)" :user="exec" :key="exec.id" :loggedInUser="fakeuser" />
+                    </div>
+                    <div class="exec-contact-info-container" v-else key="1">
+                        <skeletonmembercard v-for="n in 6" :key="n" />
+                    </div>
+                </transition>
                 <h1 class="contact-header">Website Contact</h1>
                 <p class="contact-subtext">For questions, comments, concerns, quips, quibbles, conundrums, or connections relating to the AFC website, reach our Web Director <a class="hoverable" href="mailto:webadmin@mciafc.com">webadmin@mciafc.com</a>. This email should only be used for website conerns.</p>
-                <MemberCard class="card" :user="findWebmaster(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded"></MemberCard>
+                <transition name="fade" mode="out-in">
+                    <MemberCard key="0" class="card" :user="findWebmaster(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded"></MemberCard><skeletonmembercard key="1" v-else />
+                </transition>
             </div>
         </div>
     </div>
@@ -23,11 +35,14 @@
 
 <script>
 import MemberCard from '../dashboard/components/tools/crew/components/membercard.vue'
+import skeletonmembercard from '../dashboard/components/tools/crew/components/skeletonmembercard.vue'
+
 import io from "socket.io-client"
     export default {
         name: 'ContactPage',
         components: {
-            MemberCard
+            MemberCard,
+            skeletonmembercard
         },
         data() {
             return {
@@ -94,12 +109,21 @@ import io from "socket.io-client"
                 })
                 // return the first webmaster in the list
                 let webmaster = webmasters[0]
-                console.log(webmaster)
-                console.log(webmasters)
                 return webmaster
             }
+        },
+        findStaffAdvisor() {
+            return (crew) => {
+                // get a list of all the staff advisors
+                let staffAdvisors = crew.filter((member) => {
+                    return member.memberInfo.position == "Staff Advisor"
+                })
+                // return the first staff advisor in the list
+                let staffAdvisor = staffAdvisors[0]
+                return staffAdvisor
+            }
         }
-        }
+    }
     }
 </script>
 
@@ -182,6 +206,18 @@ import io from "socket.io-client"
 .contact-subtext {
     margin-top: 10px;
     font-size: 1.2em;
+}
+
+.fade-enter-active {
+    transition: 500ms ease opacity;
+}
+.fade-leave-active {
+  transition: 100ms ease opacity;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 a.hoverable:hover {
