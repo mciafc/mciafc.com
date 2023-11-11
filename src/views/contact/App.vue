@@ -85,7 +85,7 @@ import io from "socket.io-client"
                     })
 
                 }
-        }
+        },
         findWebmaster() {
             return (crew) => {
                 // get a list of all the webmasters
