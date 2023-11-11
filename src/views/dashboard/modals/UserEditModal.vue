@@ -132,7 +132,6 @@ import profilepicture from './components/profilepicture.vue'
             }
         },
         mounted() {
-            console.log(this.user)
             fetch('https://api.mciafc.com/crew')
             .then(response => response.json())
             .then(data => {
@@ -235,7 +234,7 @@ import profilepicture from './components/profilepicture.vue'
                             'Webmaster': -1,
                         }
                         // get the position of the user
-                        let userPosition = this.user.memberInfo.position
+                        let userPosition = user.memberInfo.position
                         // get the position of the selecteduser
                         let selecteduserPosition = this.selecteduser.memberInfo.position
 
