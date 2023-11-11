@@ -38,14 +38,12 @@
 
 <script>
 import CrewMemberCard from './components/membercard.vue'
-import CrewMemberCardSkeleton from './components/skeletonmembercard.vue'
 import io from 'socket.io-client'
 
     export default {
         name: 'DashboardControls',
         components: {
             CrewMemberCard,
-            CrewMemberCardSkeleton
         },
         props: {
             user: Object
