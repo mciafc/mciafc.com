@@ -135,6 +135,7 @@ import profilepicture from './components/profilepicture.vue'
             fetch('https://api.mciafc.com/crew')
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 let execSearch = data.execs.find(exec => exec._id == this.$route.params.id)
                 if (execSearch != undefined) {
                     this.selecteduser = execSearch
