@@ -30,11 +30,11 @@
                 <!-- Dev note: This section should only show up if there are upcoming featured events in the API -->
             </div>
         </div>
-        <div class="section5">
+        <!-- <div class="section5">
             <h1 class="section-heading">Support our Cause</h1>
             <p class="bodytext">Our auditorium's equipment is starting to get pretty old, and is definitely showing signs of age. We are also missing equipment that would be vital in putting on the best shows possible. We strive to make every show our best, so monetary donations are very appreciated to help us purchase new equipment to keep our Auditorium running to the best of it's ability.</p>
             <button class="btn">DONATE</button>
-        </div>
+        </div> -->
     </div>
 </template>
 
