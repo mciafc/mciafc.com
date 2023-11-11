@@ -7,7 +7,7 @@
                     <div class="name-sector">
                         <h3 class="selecteduserNames" :class="{ smallerNameFont: nameLength(selecteduser) }">{{ selecteduser.FirstName }} {{ selecteduser.LastName }}</h3>
                         <div class="pronouns-position">
-                            <p class="pronouns"><font-awesome-icon icon="fa-solid fa-user" :class="{ selecteduserIsExec: selectedusermodel.isExec, editPosition: allowedToEditPosition() }" class="execToggle" title="Toggle Exec Status (If your role is high enough)" @click="toggleExecStatus()" /> <input type="text" class="pronouns-input" max="15" v-model="selectedusermodel.pronouns" placeholder="pro/nouns"> </p>
+                            <p class="pronouns"><font-awesome-icon icon="fa-solid fa-user" :class="{ selecteduserIsExec: selectedusermodel.isExec, editPosition: allowedToEditPosition(user) }" class="execToggle" title="Toggle Exec Status (If your role is high enough)" @click="toggleExecStatus()" /> <input type="text" class="pronouns-input" max="15" v-model="selectedusermodel.pronouns" placeholder="pro/nouns"> </p>
                             <p class="division-dot"> • </p>
                             <p class="position" v-if="!allowedToEditPosition()">{{ selecteduser.memberInfo.position.toLowerCase() }}</p>
                             <p v-else><select v-model="selectedusermodel.position" class="position-selector">
@@ -222,8 +222,8 @@ import profilepicture from './components/profilepicture.vue'
                 }
             },
             allowedToEditPosition() {
-                return function() {
-                    if (this.user.isExec) {
+                return function(user) {
+                    if (isExec) {
                         const positionHierarchy = {
                             'Staff Advisor': 0,
                             'President': 1,
