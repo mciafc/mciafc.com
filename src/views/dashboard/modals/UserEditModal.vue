@@ -9,7 +9,7 @@
                         <div class="pronouns-position">
                             <p class="pronouns"><font-awesome-icon icon="fa-solid fa-user" :class="{ selecteduserIsExec: selectedusermodel.isExec, editPosition: allowedToEditPosition(user, selecteduser) }" class="execToggle" title="Toggle Exec Status (If your role is high enough)" @click="toggleExecStatus()" /> <input type="text" class="pronouns-input" max="15" v-model="selectedusermodel.pronouns" placeholder="pro/nouns"> </p>
                             <p class="division-dot"> • </p>
-                            <p class="position" v-if="!allowedToEditPosition()">{{ selecteduser.memberInfo.position.toLowerCase() }}</p>
+                            <p class="position" v-if="!allowedToEditPosition(user, selecteduser)">{{ selecteduser.memberInfo.position.toLowerCase() }}</p>
                             <p v-else><select v-model="selectedusermodel.position" class="position-selector">
                                 <option v-for="(position, index) in positionsYouAreAllowedToGiveOut()" :value="position" :key="index">{{ position }}</option>
                             </select></p>
