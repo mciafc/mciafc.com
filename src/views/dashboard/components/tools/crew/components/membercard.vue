@@ -37,7 +37,7 @@
             getProfilePicture() {
                 return function(user) {
                     if (user.memberInfo.profilePicture == "null") {
-                        return "https://via.placeholder.com/250x250"
+                        return "default_pfp.jpg"
                     } else {
                         return user.memberInfo.profilePicture
                     }
