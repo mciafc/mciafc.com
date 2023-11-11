@@ -22,7 +22,7 @@
                 <Divider />
                 <Events id="events" :user="user" class="dash-section" @viewEvent="openEventModal" />
                 <Divider />
-                <!-- <Crew id="crew" :user="user" class="dash-section" /> -->
+                <Crew id="crew" :user="user" class="dash-section" />
                 <Divider />
             </div>
         </div>
