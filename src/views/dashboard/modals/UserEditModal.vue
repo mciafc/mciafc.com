@@ -110,16 +110,21 @@ import profilepicture from './components/profilepicture.vue'
                     .then(data => {
                         console.log(data)
                         if (this.$refs.pfp.image != null) {
-                            fetch(`http://localhost:4452/files/crew/up/pfp/${this.selecteduser._id}`, {
+                            let formData = new FormData()
+                            // convert the image to a buffer
+                            const base64String = this.$refs.pfp.image
+                            const byteCharacters = atob(base64String.split(',')[1])
+                            const byteNumbers = new Array(byteCharacters.length);
+                            for (let i = 0; i < byteCharacters.length; i++) {
+                                byteNumbers[i] = byteCharacters.charCodeAt(i);
+                            }
+                            const byteArray = new Uint8Array(byteNumbers);
+                            const image = new Blob([byteArray], { type: 'image/jpeg' })
+                            // set the file name of the image 
+                            formData.append('file', image)
+                            fetch(`https://api.mciafc.com/crew/pfp/${this.selecteduser._id}`, {
                                 method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    name: `${this.selecteduser._id}-profile-${new Date().getTime()}.png`,
-                                    file: this.$refs.pfp.image,
-                                    uploader: this.user
-                                })
+                                body: formData
                             })
                             .then(response => response.json())
                             .then(data => {
@@ -168,7 +173,7 @@ import profilepicture from './components/profilepicture.vue'
                     if (selecteduser.memberInfo.profilePicture == "null") {
                         return "https://via.placeholder.com/250x250"
                     } else {
-                        return selecteduser.memberInfo.profilePicture
+                        return "https://api.mciafc.com/crew/pfp/" + selecteduser.memberInfo.profilePicture
                     }
                 }
             },

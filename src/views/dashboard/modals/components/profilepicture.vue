@@ -1,6 +1,6 @@
 <template>
     <p>
-        <img :src="getProfilePicture(user)" class="pfp" @click="openImageUploader" v-if="image == null">
+        <v-lazy-image :src="getProfilePicture(user)" class="pfp" @click="openImageUploader" v-if="image == null" />
         <img :src="image" @click="openImageUploader" class="pfp" v-else>
         <input type="file" @change="uploadImage($event)" style="display: none;" ref="uploader" accept="image/png">
     </p>
@@ -38,11 +38,7 @@
                     if (this.image != null) {
                         return this.image
                     }
-                    if (user.memberInfo.profilePicture == "null") {
-                        return "https://via.placeholder.com/250x250"
-                    } else {
-                        return user.memberInfo.profilePicture
-                    }
+                    return "https://api.mciafc.com/crew/pfp/" + user.memberInfo.profilePicture
                 }
             },
         }

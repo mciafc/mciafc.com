@@ -1,7 +1,7 @@
 <template>
     <div class="crew-member-card">
         <div class="name-and-profile-picture">
-            <p><img :src="getProfilePicture(user)" class="pfp"></p>
+            <p><v-lazy-image :src="getProfilePicture(user)" class="pfp" /></p>
             <div class="name-sector">
                 <h3 class="userNames" :class="{ smallerNameFont: nameLength(user) }">{{ user.FirstName }} {{ user.LastName }} <span v-if="user._id == loggedInUser._id" class="you-signifier">YOU</span></h3>
                 <div class="pronouns-position">
@@ -39,7 +39,7 @@
                     if (user.memberInfo.profilePicture == "null") {
                         return "default_pfp.jpg"
                     } else {
-                        return user.memberInfo.profilePicture
+                        return "https://api.mciafc.com/crew/pfp/" + user.memberInfo.profilePicture
                     }
                 }
             },
