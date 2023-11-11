@@ -5,8 +5,8 @@
         <div class="membercards">
             <h1>Execs</h1>
             <transition name="fade" mode="out-in">
-                <div v-if="crew != null" key="5" class="card-container-container">
-                    <div v-if="crew != null" key="1" class="membercards">
+                <div v-if="crew.length != 0" key="5" class="card-container-container">
+                    <div v-if="crew.length != 0" key="1" class="membercards">
                         <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.execs)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="3" class="membercards">
@@ -15,8 +15,8 @@
                     <h1>Goons</h1>
                     <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
                     <br>
-                    <div v-if="crew != null" key="2" class="membercards">
-                        <!-- <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.members)" :key="index" :user="crewmember" :loggedInUser="user" /> -->
+                    <div v-if="crew.length != 0" key="2" class="membercards">
+                        <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.members)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="4" class="membercards">
                         <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
@@ -55,7 +55,7 @@ import io from 'socket.io-client'
                 socket: null,
                 connected: false,
                 authenticated: false,
-                crew: null,
+                crew: [],
             }
         },
         created() {
