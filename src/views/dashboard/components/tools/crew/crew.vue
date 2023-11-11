@@ -16,19 +16,19 @@
                     <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
                     <br>
                     <div v-if="crew.length != 0" key="2" class="membercards">
-                        <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.members)" :key="index" :user="crewmember" :loggedInUser="user" />
+                        <CrewMemberCard v-for="(crewmember, index) in crew.members" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="4" class="membercards">
-                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
+                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
                     </div>
                 </div>
                 <div v-else key="6">
                     <div key="3" class="membercards">
-                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
+                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
                     </div>
                     <h1>Members</h1>
                     <div key="4" class="membercards">
-                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
+                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
                     </div>
                 </div>
             </transition>
@@ -38,12 +38,14 @@
 
 <script>
 import CrewMemberCard from './components/membercard.vue'
+import CrewMemberCardSkeleton from './components/skeletonmembercard.vue'
 import io from 'socket.io-client'
 
     export default {
         name: 'DashboardControls',
         components: {
             CrewMemberCard,
+            CrewMemberCardSkeleton
         },
         props: {
             user: Object
