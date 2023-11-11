@@ -98,32 +98,20 @@ import io from 'socket.io-client'
                         'Webmaster': 6,
                     }
 
-                    let sortedList = crew
-                    // sort by first name
-                    sortedList = sortedList.sort((a, b) => {
-                        if (a.FirstName < b.FirstName) {
-                            return -1
-                        } else if (a.FirstName > b.FirstName) {
-                            return 1
-                        } else {
-                            return 0
+                    return crew.sort((a, b) => {
+                        // Sort by role position
+                        const positionComparison = positionHierarchy[a.memberInfo.position] - positionHierarchy[b.memberInfo.position]
+                        if (positionComparison !== 0) {
+                            return positionComparison
                         }
-                    })
-                    // sort by last name
-                    sortedList = sortedList.sort((a, b) => {
-                        if (a.LastName < b.LastName) {
-                            return -1
-                        } else if (a.LastName > b.LastName) {
-                            return 1
-                        } else {
-                            return 0
+                        // Sort by last name
+                        const lastNameComparison = a.LastName.localeCompare(b.LastName)
+                        if (lastNameComparison !== 0) {
+                            return lastNameComparison
                         }
+                        // Sort by first name
+                        return a.FirstName.localeCompare(b.FirstName)
                     })
-                    // sort by role position
-                    sortedList = sortedList.sort((a, b) => {
-                        return positionHierarchy[a.memberInfo.position] - positionHierarchy[b.memberInfo.position]
-                    })
-                    return sortedList
                     
                 }
             }
