@@ -7,10 +7,10 @@
             <transition name="fade" mode="out-in">
                 <div v-if="crew.length != 0" key="5" class="card-container-container">
                     <div v-if="crew.length != 0" key="1" class="membercards">
-                        <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.execs)" :key="index" :user="crewmember" :loggedInUser="user" />
+                        <CrewMemberCard v-for="(crewmember, index) in crew.execs" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="3" class="membercards">
-                        <!-- <CrewMemberCardSkeleton v-for="n in 9" :key="n" /> -->
+                        <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
                     </div>
                     <h1>Goons</h1>
                     <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
