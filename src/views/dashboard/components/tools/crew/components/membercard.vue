@@ -103,6 +103,7 @@
     height: 100px;
     vertical-align: middle;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .userNames {

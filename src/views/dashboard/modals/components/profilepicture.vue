@@ -1,7 +1,7 @@
 <template>
     <p>
         <v-lazy-image :src="getProfilePicture(user)" class="pfp" @click="openImageUploader" v-if="image == null" />
-        <img :src="image" @click="openImageUploader" class="pfp" v-else>
+        <v-lazy-image :src="image" @click="openImageUploader" class="pfp" v-else />
         <input type="file" @change="uploadImage($event)" style="display: none;" ref="uploader" accept="image/png">
     </p>
 </template>
@@ -54,6 +54,7 @@
     vertical-align: middle;
     border-radius: 50%;
     transition: all 200ms;
+    object-fit: cover;
 }
 
 .pfp:hover {
