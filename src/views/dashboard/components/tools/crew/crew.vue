@@ -7,7 +7,7 @@
             <transition name="fade" mode="out-in">
                 <div v-if="crew.length != 0" key="5" class="card-container-container">
                     <div v-if="crew.length != 0" key="1" class="membercards">
-                        <CrewMemberCard v-for="(crewmember, index) in crew.execs" :key="index" :user="crewmember" :loggedInUser="user" />
+                        <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.execs)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="3" class="membercards">
                         <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
@@ -16,7 +16,7 @@
                     <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
                     <br>
                     <div v-if="crew.length != 0" key="2" class="membercards">
-                        <CrewMemberCard v-for="(crewmember, index) in crew.members" :key="index" :user="crewmember" :loggedInUser="user" />
+                        <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.members)" :key="index" :user="crewmember" :loggedInUser="user" />
                     </div>
                     <div v-else key="4" class="membercards">
                         <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
@@ -98,9 +98,9 @@ import io from 'socket.io-client'
                         'Webmaster': 6,
                     }
 
-                    let sortedList = []
+                    let sortedList = crew
                     // sort by first name
-                    sortedList = crew.sort((a, b) => {
+                    sortedList = sortedList.sort((a, b) => {
                         if (a.FirstName < b.FirstName) {
                             return -1
                         } else if (a.FirstName > b.FirstName) {
@@ -110,7 +110,7 @@ import io from 'socket.io-client'
                         }
                     })
                     // sort by last name
-                    sortedList = crew.sort((a, b) => {
+                    sortedList = sortedList.sort((a, b) => {
                         if (a.LastName < b.LastName) {
                             return -1
                         } else if (a.LastName > b.LastName) {
@@ -120,7 +120,7 @@ import io from 'socket.io-client'
                         }
                     })
                     // sort by role position
-                    sortedList = crew.sort((a, b) => {
+                    sortedList = sortedList.sort((a, b) => {
                         return positionHierarchy[a.memberInfo.position] - positionHierarchy[b.memberInfo.position]
                     })
                     return sortedList
