@@ -11,7 +11,7 @@
                             <p class="division-dot"> • </p>
                             <p class="position" v-if="!allowedToEditPosition(user, selecteduser)">{{ selecteduser.memberInfo.position.toLowerCase() }}</p>
                             <p v-else><select v-model="selectedusermodel.position" class="position-selector">
-                                <option v-for="(position, index) in positionsYouAreAllowedToGiveOut()" :value="position" :key="index">{{ position }}</option>
+                                <option v-for="(position, index) in positionsYouAreAllowedToGiveOut(user)" :value="position" :key="index">{{ position }}</option>
                             </select></p>
                         </div>
                     </div>
@@ -196,8 +196,8 @@ import profilepicture from './components/profilepicture.vue'
                 }
             },
             positionsYouAreAllowedToGiveOut() {
-                return function() {
-                    if (this.user.isExec) {
+                return function(user) {
+                    if (user.isExec) {
                         // there is a hierarchy of positions that can be given out
                         // if you are the president, you can give out any position except staff advisor
                         // you can only give out positions that are below your position
@@ -212,7 +212,7 @@ import profilepicture from './components/profilepicture.vue'
                             'Webmaster': -1,
                         }
                         // get the position of the user
-                        let userPosition = this.user.memberInfo.position
+                        let userPosition = user.memberInfo.position
                         // create an array of positions that are below the user's position
                         let positionsBelowUser = []
                         for (let position in positionHierarchy) {
