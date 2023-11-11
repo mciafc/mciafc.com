@@ -213,7 +213,7 @@ import io from "socket.io-client";
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 80%;
+    width: 600px;
     margin-top: 15px;
 }
 
@@ -287,6 +287,20 @@ import io from "socket.io-client";
         width: 300px;
     }
 }
+
+@media (max-width:600px) {
+    .text-input {
+        width: 200px;
+    }
+    .textarea-input {
+        width: 200px;
+    }
+    .signup-form {
+        width: 90%;
+    }
+}
+
+
 
 span {
     font-family: 'Josefin Sans', sans-serif !important;
