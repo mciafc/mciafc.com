@@ -132,6 +132,7 @@ import profilepicture from './components/profilepicture.vue'
             }
         },
         mounted() {
+            console.log(this.user)
             fetch('https://api.mciafc.com/crew')
             .then(response => response.json())
             .then(data => {
