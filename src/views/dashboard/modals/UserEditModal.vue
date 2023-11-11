@@ -223,7 +223,7 @@ import profilepicture from './components/profilepicture.vue'
             },
             allowedToEditPosition() {
                 return function(user) {
-                    if (isExec) {
+                    if (user.isExec) {
                         const positionHierarchy = {
                             'Staff Advisor': 0,
                             'President': 1,
