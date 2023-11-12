@@ -272,13 +272,14 @@ import io from "socket.io-client";
 }
 
 .registration-header {
-    font-size: 2.5em;
+    font-size: 3em;
+    padding-top: 30px;
     margin: 0;
 }
 
 .registration-subheader {
     font-size: 1.2em;
-    margin-bottom: 75px;
+    margin-bottom: 30px;
 }
 
 .registration-section-header {
@@ -376,7 +377,6 @@ span {
     justify-content: center;
     text-align: center;
     margin: 0;
-    margin-bottom: 30px;
 }
 .banner-image {
     position: absolute;
