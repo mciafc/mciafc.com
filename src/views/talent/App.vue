@@ -8,25 +8,25 @@
         </div>
         <div class="signup-form-container" v-if="!registrationComplete">
             <div class="signup-form" v-if="!registrationComplete && signupsOpen">
-                <h1 class="registration-header">REGISTER YOUR ACT</h1>
-                <p class="registration-subheader">Got talent? Sign up for the {{ new Date().getFullYear() }} Winter Talent Show, which will take place on <b>{{ dateStringExpander(estimatedTalentShowDate().toDateString()) }}</b>! It can be anything! Singing, dancing, a skit, a magic show, comedy, you name it! Clubs can also sign up to have an act, and Clubs bypass the audition process. Clubs also have the option to make a video. You do not need to register here if you are making a video.</p>
+                <h1 class="registration-header">CALLING FOR AUDITIONS</h1>
+                <p class="registration-subheader">Got talent? Sign up to audition for the {{ new Date().getFullYear() }} Winter Talent Show, which will take place on <b>{{ dateStringExpander(estimatedTalentShowDate().toDateString()) }}</b>! It can be anything! Singing, dancing, a skit, a magic show, comedy, you name it! Clubs can also sign up to have an act, or they can make a video. Clubs do not need to register here if they are making a video.</p>
                 <h2 class="registration-section-header">Organizer Information</h2>
                 <p class="registration-section-description">Some information about you, so we can get in contact. By signing up, you will be the 'leader' of your group, and will be the one we will communicate with regarding auditions and other processes with your act.</p>
                 <h3 class="information-header">Registering on behalf of a Club?</h3>
                 <input class="checkbox-input" type="checkbox" v-model="talentShowRegistration.isClub" />
-                <h3 class="information-header"><span v-if="talentShowRegistration.isClub">Club</span><span v-else>Your</span> Name</h3>
+                <h3 class="information-header"><span v-if="talentShowRegistration.isClub">Club</span><span v-else>Your</span> Name*</h3>
                 <input class="text-input" type="text" v-model="talentShowRegistration.organizerName" placeholder="Your name / Club name" />
-                <h3 class="information-header">Your Email</h3>
+                <h3 class="information-header">Your Email*</h3>
                 <input class="text-input" type="text" v-model="talentShowRegistration.organizerEmail" placeholder="Your email" />
                 <h2 class="registration-section-header">Act Information</h2>
                 <p class="registration-section-description">Some information about your act, so we can get an idea of what you're doing.</p>
-                <h3 class="information-header">Act Name</h3>
+                <h3 class="information-header">Act Name*</h3>
                 <input class="text-input" type="text" v-model="talentShowRegistration.actName" placeholder="e.g. Mystical Magic Show">
-                <h3 class="information-header">Act Length (minutes)</h3>
+                <h3 class="information-header">Act Length (minutes)*</h3>
                 <input class="text-input" type="number" min="0" max="5" v-model="talentShowRegistration.actLength">
-                <h3 class="information-header">Number of Members</h3>
+                <h3 class="information-header">Number of Members*</h3>
                 <input class="text-input" type="number" min="1" max="30" v-model="talentShowRegistration.actMembers">
-                <h3 class="information-header">Act Description</h3>
+                <h3 class="information-header">Act Description*</h3>
                 <textarea class="textarea-input" type="text" v-model="talentShowRegistration.actDescription" placeholder="e.g. We are a group of magicians who will be performing a magic show."></textarea>
                 <h3 class="registration-section-header">Equipment</h3>
                 <p class="registration-section-description">What kind of equipment will your act need? View a comprehensive list of our equipment <a class="hoverable" href="https://mciafc.com/equipment">here</a>.</p>
@@ -39,6 +39,12 @@
                 <h2 class="registration-section-header">Additional Information</h2>
                 <p class="registration-section-description">Anything else you want to tell us? Put it here.</p>
                 <textarea class="textarea-input" type="text" v-model="talentShowRegistration.additionalInfo" placeholder="e.g. We are a group of magicians who will be performing a magic show."></textarea>
+                <h3 class="information-header">Audition Date*</h3>
+                <p class="information-section-description">Select the day that you would like to audition. All auditions take place in the Auditorium after school.</p>
+                <select class="dropdown-input" v-model="talentShowRegistration.auditionDay" @click="console.log(talentShowRegistration.auditionDay)">
+                    <option value="0">Select date</option>
+                    <option v-for="(date, index) in auditionDates()" :key="index" :value="index + 1">{{ date }}</option>
+                </select>
                 <button class="btn" style="scale: 1.5; margin-top: 30px;" @click="submitRegistration" v-if="!disableRegisterButton">REGISTER</button>
                 <button class="btn" style="scale: 1.5; margin-top: 30px;" v-else>REGISTERING...</button>
             </div>
@@ -75,7 +81,8 @@ import io from "socket.io-client";
                         mics: 0,
                         other: ""
                     },
-                    additionalInfo: ""
+                    additionalInfo: "",
+                    auditionDay: 0,
                 }
             }
         },
@@ -97,8 +104,8 @@ import io from "socket.io-client";
         methods: {
             submitRegistration() {
                 // check to see if all fields are filled out
-                if (this.talentShowRegistration.organizerName == "" || this.talentShowRegistration.organizerEmail == "" || this.talentShowRegistration.actName == "" || this.talentShowRegistration.actMembers == 0 || this.talentShowRegistration.actDescription == "") {
-                    alert("Please fill out all fields.");
+                if (this.talentShowRegistration.organizerName == "" || this.talentShowRegistration.organizerEmail == "" || this.talentShowRegistration.actName == "" || this.talentShowRegistration.actMembers == 0 || this.talentShowRegistration.actDescription == "" || this.talentShowRegistration.auditionDay == 0) {
+                    alert("Please fill out all required fields. (* indicates required field.)");
                     return;
                 }
                 if (this.talentShowRegistration.organizerEmail.includes("@") == false) {
@@ -201,7 +208,45 @@ import io from "socket.io-client";
 
                     return `${dayOfWeek}, ${monthExpanded} ${day}, ${year}`;
                 }
-            }
+            },
+            auditionDates() {
+                return function() {
+                    // get Weekdays for the last week of november and the first week of december
+                    let year = new Date().getFullYear();
+                    let date = new Date(year, 10, 24);
+                    let dates = [];
+                    while (date.getDay() != 5) {
+                        date.setDate(date.getDate() - 1);
+                    }
+                    for (let i = 0; i < 7; i++) {
+                        date.setDate(date.getDate() + 1);
+                        dates.push(date.toDateString());
+                    }
+                    date = new Date(year, 11, 1);
+                    while (date.getDay() != 5) {
+                        date.setDate(date.getDate() + 1);
+                    }
+                    for (let i = 0; i < 7; i++) {
+                        date.setDate(date.getDate() + 1);
+                        dates.push(date.toDateString());
+                    }
+                    // remove saturdays and sundays from the array
+                    dates = dates.filter((date) => {
+                        return date.includes("Sat") == false && date.includes("Sun") == false;
+                    })
+
+                    // use the DateStringExpander method on all dates in the array
+                    dates = dates.map((date) => {
+                        return this.dateStringExpander(date);
+                    })
+
+                    // cut the year off of the dates
+                    dates = dates.map((date) => {
+                        return date.substring(0, date.length - 6);
+                    })
+                    return dates
+                }
+            },
         }
     }
 </script>
@@ -213,7 +258,7 @@ import io from "socket.io-client";
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 600px;
+    width: 800px;
     margin-top: 15px;
 }
 
@@ -237,9 +282,10 @@ import io from "socket.io-client";
 }
 
 .registration-section-header {
-    font-size: 2.5em;
+    font-size: 3em;
     margin: 0;
     margin-top: 50px;
+    text-decoration: underline;
 }
 .registration-section-description {
     font-size: 1.2em;
@@ -279,6 +325,15 @@ import io from "socket.io-client";
     resize: none;
 }
 
+.dropdown-input {
+    width: 400px;
+    height: 50px;
+    border: 0px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
 @media (max-width:960px) {
     .text-input {
         width: 300px;
@@ -297,6 +352,10 @@ import io from "socket.io-client";
     }
     .signup-form {
         width: 90%;
+    }
+    .dropdown-input {
+        width: 200px;
+        font-size: 1em;
     }
 }
 
