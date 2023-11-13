@@ -2,7 +2,7 @@
     <div class="bookpage">
         <div class="banner">
             <h1 class="title">BOOK YOUR SHOW</h1>
-            <v-lazy-image src="soundboard-compress2.jpg" alt="Banner image of the Auditorium Cabinet" class="banner-image" />
+            <v-lazy-image src="soundboard-compress2.JPG" alt="Banner image of the Auditorium Cabinet" class="banner-image" />
         </div>
         <div class="flex-container">
             <div class="centerer">
