@@ -153,7 +153,7 @@
     padding: 5px;
     padding-top: 10px;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.7em;
     scale: 1.1;
     font-family: 'Josefin Sans', sans-serif !important;
     cursor: pointer;
