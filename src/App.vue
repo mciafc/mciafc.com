@@ -1,6 +1,6 @@
 <template>
   <header class="header unselectable">
-    <ul>
+    <ul class="navbar">
       <div class="navbox">
         <li class="nav-item">
           <p><a class="navbar" @click="this.$router.push('/')">Home</a></p>
@@ -209,7 +209,7 @@ li p {
   text-decoration: none;
 }
 
-ul {
+ul.navbar {
   list-style-type: none;
   margin: 0;
   position: absolute;

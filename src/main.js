@@ -46,6 +46,7 @@ import FourOhFour from './views/error-pages/404.vue';
 import Talent from './views/talent/App.vue';
 import ContactPage from './views/contact/App.vue';
 import BookPage from './views/book/App.vue';
+import AuditoriumPage from './views/auditorium/App.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
@@ -59,6 +60,7 @@ const routes = [
     { path: '/talent', component: Talent, name: "Talent Show"},
     { path: '/contact', component: ContactPage, name: "Contact"},
     { path: '/book', component: BookPage, name: "Book"},
+    { path: '/auditorium', component: AuditoriumPage, name: "Auditorium"},
     { path: '/:pathMatch(.*)*', component: FourOhFour, name: "404"}
 ];
 
