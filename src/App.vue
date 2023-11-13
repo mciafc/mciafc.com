@@ -209,7 +209,7 @@ li p {
   text-decoration: none;
 }
 
-ul.navbar {
+ul {
   list-style-type: none;
   margin: 0;
   position: absolute;
