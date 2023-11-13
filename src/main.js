@@ -19,9 +19,18 @@ import { faTicket } from '@fortawesome/free-solid-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faUserPen } from '@fortawesome/free-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-library.add(faUserSecret, faCaretDown, faUser, faToolbox, faToggleOn, faCalendar, faUsersGear, faUsers, faTicket, faGlobe, faStar, faRightFromBracket)
+library.add(faUserSecret, faCaretDown, faUser, faToolbox, faToggleOn, faCalendar, faUsersGear, faUsers, faTicket, faGlobe, faStar, faRightFromBracket, faEnvelope, faInstagram, faFacebook, faTwitter, faLinkedin, faUserPen, faYoutube, faGithub, faUserPlus )
 
 
 let app = createSSRApp(App);
@@ -32,20 +41,47 @@ import CrewDashboard from './views/dashboard/App.vue'
 import EventModal from './views/dashboard/modals/EventModal.vue'
 import OrganizerInfoModal from './views/dashboard/modals/EventOrganizerInfoModal.vue';
 import EventDeletionModal from './views/dashboard/modals/EventDeletionModal.vue';
+import UserEditModal from './views/dashboard/modals/UserEditModal.vue';
+import FourOhFour from './views/error-pages/404.vue';
+import Talent from './views/talent/App.vue';
+import ContactPage from './views/contact/App.vue';
+import BookPage from './views/book/App.vue';
+import AuditoriumPage from './views/auditorium/App.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
     { path: '/login', component: LoginPage, name: "login" },
     { path: '/dash', component: CrewDashboard, name: "dashboard", children: [
-        { path: 'event/:id', component: EventModal, name: "event", meta: { modal: true } },
-        { path: 'event/:id/organizerinfo', component: OrganizerInfoModal, name: "eventorganizerinfo", meta: { modal: true }},
-        { path: 'event/:id/delete', component: EventDeletionModal, name: "deleteEvent", meta: { modal: true }},
+        { path: 'event/:id', component: EventModal, name: "dashboard - Event", meta: { modal: true } },
+        { path: 'event/:id/organizerinfo', component: OrganizerInfoModal, name: "dashboard - Event Organizer Info", meta: { modal: true }},
+        { path: 'event/:id/delete', component: EventDeletionModal, name: "dashboard - Delete Event", meta: { modal: true }},
+        { path: 'user/:id/edit', component: UserEditModal, name: "dashboard - Edit User", meta: { modal: true }},
     ] },
+    { path: '/talent', component: Talent, name: "Talent Show"},
+    { path: '/contact', component: ContactPage, name: "Contact"},
+    { path: '/book', component: BookPage, name: "Book"},
+    { path: '/auditorium', component: AuditoriumPage, name: "Auditorium"},
+    { path: '/:pathMatch(.*)*', component: FourOhFour, name: "404"}
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior(to, from, savedPosition) {
+        console.log("to " + to.name)
+        console.log("from " + from.name)
+        console.log("savedpos " + savedPosition)
+        if (from.name == undefined) {
+            return
+        }
+        if (from.name.startsWith("dashboard") || to.name.startsWith("dashboard")) {
+            if (!to.name.startsWith("dashboard")) {
+                return { top: 0 }
+            }
+            return
+        }
+        return { top: 0 }
+    }
 });
 
 router.afterEach((to, from) => {
@@ -59,9 +95,16 @@ router.afterEach((to, from) => {
         }
         to.meta.transition = 'none'
     }
+    // set the page title
+    if (toName != undefined) {
+        document.title = "Martingrove Auditorium - " + toName.charAt(0).toUpperCase() + toName.slice(1);
+    }
 })
 
+import vLazyImage from 'v-lazy-image';
+
 app.use(router);
+app.component('v-lazy-image', vLazyImage);
 app.component("font-awesome-icon", FontAwesomeIcon)
 
 

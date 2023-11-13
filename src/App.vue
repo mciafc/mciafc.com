@@ -1,22 +1,28 @@
 <template>
   <header class="header unselectable">
-    <ul>
+    <ul class="navbar">
       <div class="navbox">
         <li class="nav-item">
           <p><a class="navbar" @click="this.$router.push('/')">Home</a></p>
         </li>
+        <li class="nav-item" v-if="isTalentShowSeason">
+          <p><a class="navbar" @click="this.$router.push('/talent')">Talent Show</a></p>
+        </li>
         <li class="nav-item">
           <p class="navbar"><a class="navbar" @click="this.$router.push('/auditorium')">Our Auditorium</a></p>
         </li>
+        <!-- <li class="nav-item">
+          <p><a class="navbar">Crew</a></p> 
+        </li> -->
         <li class="nav-item">
-          <p><a class="navbar">About Us <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
+          <p><a class="navbar" @click="this.$router.push('/book')">Book</a></p>
         </li>
-        <li class="nav-item">
-          <p><a class="navbar">Book <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
+        <li>
+          <p><a class="navbar" @click="this.$router.push('/contact')">Contact</a></p>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <p><a class="navbar">Support Us</a></p>
-        </li>
+        </li> -->
         <li class="nav-item right-side " title="Sign in">
           <p><a><font-awesome-icon class="signin-icon" :icon="changeLoginIcon(user)" @click="loginpage()" /></a></p>
         </li>
@@ -30,6 +36,30 @@
       </div>
     </Transition>
   </router-view>
+  <footer class="footer">
+      <div class="footer-section">
+        <p class="footer-heading">Explore</p>
+        <a class="footer-link">Auditorium</a>
+        <a class="footer-link">Book</a>
+        <a class="footer-link">Crew</a>
+      </div>
+      <div class="footer-section">
+        <p class="footer-heading">Contacts</p>
+        <a class="footer-text">50 Winterton Dr</a>
+        <a class="footer-link">Contact</a>
+        <a class="footer-link">Donate</a>
+      </div>
+      <div class="footer-section connect-section">
+        <p class="footer-heading">Connect</p>
+        <a class="footer-link" href="https://instagram.com/mci.afc" target="__blank"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
+        <a class="footer-link" href="https://www.youtube.com/@mciafc" target="__blank"><font-awesome-icon icon="fa-brands fa-youtube" /></a>
+      </div>
+      <div class="footer-section general-info right-side">
+        <p class="footer-heading">Site Info</p>
+        <p class="footer-text">Created & managed by <a class="footer-link" href="https://github.com/carreb" target="__blank"><font-awesome-icon icon-="fa-brands fa-github" />caleb</a></p>
+        <a class="footer-link" href="mailto:webadmin@mciafc.com">Webmaster Contact</a>
+      </div>
+  </footer>
 </template>
 
 <script>
@@ -69,6 +99,16 @@ export default {
           return "fa-solid fa-toolbox"
         }
       }
+    },
+    isTalentShowSeason() {
+      return function() {
+        let month = new Date().getMonth()
+        if (month == 10 || month == 11) {
+          return true
+        } else {
+          return false
+        }
+      }
     }
   }
 }
@@ -76,21 +116,33 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
 
 * {
   font-family: "Inter", sans-serif;
+}
+h1, h2, h3, h4 {
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+
+.view {
+  min-height: 98vh;
+  margin: 0;
 }
 
 body {
   margin-left: 0;
   margin-top: 0;
-  overflow-x: hidden;
   background-color: var(--bgcolor);
   color: #ffffff;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .unselectable {
@@ -115,9 +167,15 @@ html {
   width: 100%;
   height: 50px;
   z-index: 1000000;
+  font-weight: 600;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .nav-item {
+  width: fit-content;
+  text-wrap: nowrap;
+  white-space: nowrap;
   margin-bottom: 15px;
 }
 
@@ -163,6 +221,7 @@ ul {
 .navbox {
   display: flex;
   flex-wrap: nowrap;
+  overflow-x: scroll;
 }
 
 a.navbar {
@@ -192,21 +251,90 @@ a.navbar:hover {
 }
 
 .view {
-  margin-top: 75px;
+  margin-top: 50px;
 }
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: 300ms ease all;
+  transition: 200ms ease all;
 }
 
 .slide-fade-enter-from {
   opacity: 0;
-  transform: translateX(-60px)
 }
 
 .slide-fade-leave-to {
   opacity: 0;
-  transform: translateX(60px)
+}
+
+.footer {
+  background-color: #191919;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  gap: 10px;
+  bottom: 0;
+  width: 100%;
+  margin-top: 50px;
+  height: 100px;
+  z-index: 1000000;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-x: auto;
+}
+
+.footer-section {
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.footer-text {
+  color: #ffffff;
+  font-size: 0.9em;
+  margin-bottom: 0;
+  cursor:unset;
+  font-weight: 500;
+}
+
+.footer-link {
+  color: var(--mciafcorange);
+  font-size: 1em;
+  margin-bottom: 0;
+  transition: all 200ms;
+}
+
+.footer-link:hover {
+  color: var(--mciafcsky);
+  scale: 1.1;
+}
+
+.footer-heading {
+  font-size: 1.2em;
+  margin-bottom: 0;
+  font-family: 'Josefin Sans', sans-serif !important;
+  font-weight: 700;
+}
+
+.connect-section {
+  flex-direction: column;
+  align-items: center;
+}
+.connect-section > .footer-link {
+  font-size: 1.2em;
+}
+.footer-section.general-info {
+  opacity: 0.25;
+  align-self: right;
+  align-items: right;
+  margin-right: 10px;
+  width: 300px;
 }
 </style>
