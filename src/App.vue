@@ -11,11 +11,11 @@
         <li class="nav-item">
           <p class="navbar"><a class="navbar" @click="this.$router.push('/auditorium')">Our Auditorium</a></p>
         </li>
+        <!-- <li class="nav-item">
+          <p><a class="navbar">Crew</a></p> 
+        </li> -->
         <li class="nav-item">
-          <p><a class="navbar">Crew <!-- <font-awesome-icon icon="fa-solid fa-caret-down" />--></a></p> 
-        </li>
-        <li class="nav-item">
-          <p><a class="navbar">Book <font-awesome-icon icon="fa-solid fa-caret-down" /></a></p>
+          <p><a class="navbar" @click="this.$router.push('/book')">Book</a></p>
         </li>
         <li>
           <p><a class="navbar" @click="this.$router.push('/contact')">Contact</a></p>
