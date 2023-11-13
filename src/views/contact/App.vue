@@ -6,8 +6,10 @@
         </div>
         <div class="centerer">
             <div class="contact-container">
-                <h1 class="contact-header">General Inquiry & Booking</h1>
-                <p class="contact-subtext">For general inquiries and third party booking, please contact <a class="hoverable" href="mailto:execs@mciafc.com" target="__blank">execs@mciafc.com</a>. This will get your message across to all Senior Executive members. Please allow up to 24 hours for a response.</p>
+                <div class="gen-inquiry">
+                    <h1 class="contact-header">General Inquiry & Booking</h1>
+                    <p class="contact-subtext">For general inquiries and third party booking, please contact <a class="hoverable" href="mailto:execs@mciafc.com" target="__blank">execs@mciafc.com</a>. This will get your message across to all Senior Executive members. Please allow up to 24 hours for a response.</p>
+                </div>
                 <h1 class="contact-header">Staff Advisor</h1>
                 <p class="contact-subtext">If you need to talk to somebody who has connections to the school administration, your best bet is by talking to our Staff Advisor.</p>
                 <transition name="fade" mode="out-in">
@@ -169,7 +171,7 @@ import io from "socket.io-client"
 }
 .title {
     margin: 0;
-    font-size: 4em;
+    font-size: 5em;
     z-index: 10;
 }
 
@@ -232,5 +234,9 @@ a.hoverable:hover {
     .presents {
         font-size: 1.5em;
     }
+}
+
+.gen-inquiry {
+    max-width: 1000px;
 }
 </style>
