@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import io from "socket.io-client"
+
     export default {
         name: 'BookPage',
         data() {
@@ -90,7 +92,7 @@
             this.socket = io("https://io.mciafc.com/gigs")
         },
         mounted() {
-            
+
         }
     }
 </script>
