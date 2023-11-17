@@ -82,6 +82,7 @@ import EventCardSkeleton from './components/EventCardSkeleton.vue'
     overflow-x: auto;
     padding-bottom: 40px;
     scroll-behavior: smooth;
+    padding-right: 40px;
 }
 
 .fade-enter-active {
