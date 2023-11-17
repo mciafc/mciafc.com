@@ -22,8 +22,8 @@
                 <Divider />
                 <Events id="events" :user="user" class="dash-section" @viewEvent="openEventModal" />
                 <Divider />
-                <Talent id="talent" :user="user" class="dash-section" @viewAct="openActModal" />
-                <Divider />
+                <Talent id="talent" :user="user" class="dash-section" @viewAct="openActModal" v-if="isTalentShowSeason" />
+                <Divider v-if="isTalentShowSeason" />
                 <Crew id="crew" :user="user" class="dash-section" />
                 <Divider />
             </div>
@@ -76,7 +76,7 @@ import Talent from './components/tools/talent/talent.vue'
                     let now = new Date()
                     let month = now.getMonth()
                     // if it's between november and december, it's talent show season
-                    if (month >= 11 && month <= 12) {
+                    if (month >= 10 && month <= 11) {
                         return true
                     } else {
                         return false
