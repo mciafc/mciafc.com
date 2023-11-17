@@ -1,23 +1,21 @@
 <template>
-    <div class="event" v-if="event.gigName != 'do not delete this'" @click="this.$emit('viewEvent', event._id)">
-        <h1 class="eventName">{{ event.gigName }}</h1>
-        <h3 class="organizationName">By: {{ event.organizationName }}</h3>
-        <h4 class="dateRange">📅 {{ dateRange(event.gigStartDate, event.gigEndDate) }} <span v-if="eventIsHappeningNow(event.gigStartDate, event.gigEndDate)" style="background-color: #FF0000; border-radius: 3px; padding-left: 5px; padding-right: 5px; margin-left: 5px;">• LIVE NOW</span></h4>
-        <p class="eventLocation">📌 <b>Location:</b> {{ event.gigLocation }}</p>
-        <p v-if="user.isExec" class="paidJob">💵 <b>Paid Job:</b> <span v-if="event.paidJob">Yes</span><span
-                v-else>No</span></p>
-        <p class="employeesNeeded">👥 <b>Members Needed:</b> {{ employeesNeeded(event.employeesNeeded) }}</p>
-        <p v-if="event.registeredByOrganizer == false" class="registeredByOrganizer">Registered by AFC Exec.
-            (Information may be inaccurate)</p>
+    <div class="event" v-if="act.gigName != 'do not delete this'" @click="this.$emit('viewAct', act._id)">
+        <h1 class="eventName">{{ act.actName }}</h1>
+        <h3 class="organizationName">By: <span v-if="act.isClub" style="color: cornflowerblue">CLUB</span> {{ act.organizerName }}</h3>
+        <h3 class="description-header">Description:</h3>
+        <p class="description">{{ act.actDescription }}</p>
+        <h3 class="description-header" style="font-size: 18px;">🕒 Act Duration: {{ act.actLength }} min(s)</h3>
+        <h3 class="description-header" style="font-size: 18px;">🎤 Mics Needed: {{ act.actEquipment.mics }}</h3>
+        <h4 class="dateRange">📅 Audition Date: {{ auditionDates()[act.auditionDay - 1] }}</h4>
         <p class="registeredByOrganizer">Click to view more.</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: "EventCard",
+        name: "ActCard",
         props: {
-            event: Object,
+            act: Object,
             user: Object
         },
         data() {
@@ -33,7 +31,7 @@
                 managingMembersGigId: ""
             }
         },
-        emits: ['viewEvent'],
+        emits: ['viewAct'],
         methods: {
             getOrganizerContactInfo(gig) {
                 this.organizerContactInfo.name = gig.organizerName
@@ -41,9 +39,11 @@
                 this.organizerContactInfo.number = gig.organizerContactNumber
                 this.organizerContactInfo.regByOrganizer = gig.registeredByOrganizer
                 this.organizerContactInfo.modalOpen = true
+                console.log(this.people)
             },
             saveAvailabilities(avdata) {
                 this.people = avdata
+                console.log(this.people)
             },
             closeOrganizerContactInfo() {
                 this.organizerContactInfo.name = undefined
@@ -66,6 +66,7 @@
                 this.deleteConfirmation = gigId
             },
             requestEventDeletion(gigId) {
+                console.log(gigId)
                 this.socket.emit("deleteRequest", gigId)
             },
             openDropDown(gigId) {
@@ -75,6 +76,7 @@
                 return this.dropDownOpen = undefined
             },
             removeMember(gigId) {
+                console.log(gigId)
                 this.closeManagingMembers()
                 this.manageMembers(gigId)
             }
@@ -132,10 +134,45 @@
                     let now = new Date()
                     let startOfEvent = new Date(start)
                     let endOfEvent = new Date(end)
+                    console.log(now)
+                    console.log(startOfEvent)
+                    console.log(endOfEvent)
                     if (now > startOfEvent && now < endOfEvent) {
                         return true
                     }
                     return false
+                }
+            },
+             auditionDates() {
+                return function () {
+                    // get Weekdays for the last week of november and the first week of december
+                    let year = new Date().getFullYear();
+                    let date = new Date(year, 10, 24);
+                    let dates = [];
+                    while (date.getDay() != 5) {
+                        date.setDate(date.getDate() - 1);
+                    }
+                    for (let i = 0; i < 7; i++) {
+                        date.setDate(date.getDate() + 1);
+                        dates.push(date.toDateString());
+                    }
+                    date = new Date(year, 11, 1);
+                    while (date.getDay() != 5) {
+                        date.setDate(date.getDate() + 1);
+                    }
+                    for (let i = 0; i < 7; i++) {
+                        date.setDate(date.getDate() + 1);
+                        dates.push(date.toDateString());
+                    }
+                    // remove saturdays and sundays from the array
+                    dates = dates.filter((date) => {
+                        return date.includes("Sat") == false && date.includes("Sun") == false;
+                    })
+                    // cut the year off of the dates
+                    dates = dates.map((date) => {
+                        return date.substring(0, date.length - 5);
+                    })
+                    return dates
                 }
             }
         }
@@ -284,6 +321,7 @@ button:hover {
 .organizationName {
     position: relative;
     top: -15px;
+    margin-bottom: 0;
     color: #c7c7c7;
 }
 
@@ -341,5 +379,14 @@ button:hover {
     }
 }
 
+.description {
+    margin-top: 0;
+}
+
+.description-header {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 20px;
+}
 
 </style>

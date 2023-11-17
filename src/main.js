@@ -47,6 +47,9 @@ import Talent from './views/talent/App.vue';
 import ContactPage from './views/contact/App.vue';
 import BookPage from './views/book/App.vue';
 import AuditoriumPage from './views/auditorium/App.vue';
+import ActModal from './views/dashboard/modals/ActModal.vue';
+import ActOrganizerInfoModal from './views/dashboard/modals/ActOrganizerInfoModal.vue';
+import ActDeletionModal from './views/dashboard/modals/ActDeletionModal.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
@@ -56,6 +59,9 @@ const routes = [
         { path: 'event/:id/organizerinfo', component: OrganizerInfoModal, name: "dashboard - Event Organizer Info", meta: { modal: true }},
         { path: 'event/:id/delete', component: EventDeletionModal, name: "dashboard - Delete Event", meta: { modal: true }},
         { path: 'user/:id/edit', component: UserEditModal, name: "dashboard - Edit User", meta: { modal: true }},
+        { path: 'act/:id', component: ActModal, name: "dashboard - Act", meta: { modal: true }},
+        { path: 'act/:id/organizerinfo', component: ActOrganizerInfoModal, name: "dashboard - Act Organizer Info", meta: { modal: true }},
+        { path: 'act/:id/delete', component: ActDeletionModal, name: "dashboard - Delete Act", meta: { modal: true }},
     ] },
     { path: '/talent', component: Talent, name: "Talent Show"},
     { path: '/contact', component: ContactPage, name: "Contact"},

@@ -21,6 +21,7 @@
                 <h2 class="registration-section-header">Act Information</h2>
                 <p class="registration-section-description">Some information about your act, so we can get an idea of what you're doing.</p>
                 <h3 class="information-header">Act Name*</h3>
+                <p class="information-section-description">Give what you're doing a name.</p>
                 <input class="text-input" type="text" v-model="talentShowRegistration.actName" placeholder="e.g. Mystical Magic Show">
                 <h3 class="information-header">Act Length (minutes)*</h3>
                 <input class="text-input" type="number" min="0" max="5" v-model="talentShowRegistration.actLength">

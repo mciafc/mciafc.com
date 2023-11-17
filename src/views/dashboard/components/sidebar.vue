@@ -7,14 +7,14 @@
             <li title="Events">
                 <p><a href="#events"><font-awesome-icon icon="fa-solid fa-calendar" class="sidebar-item" /></a></p>
             </li>
+            <li title="Talent Show" v-if="isTalentShowSeason()">
+                <p><a href="#talent"><font-awesome-icon icon="fa-solid fa-star" class="sidebar-item" /></a></p>
+            </li>
             <li title="Featured Events" v-if="user.isExec">
                 <p><a><font-awesome-icon icon="fa-solid fa-ticket" class="sidebar-item" /></a></p>
             </li>
             <li title="Crew">
                 <p><a href="#crew"><font-awesome-icon v-if="user.isExec" icon="fa-solid fa-users-gear" class="sidebar-item" /><font-awesome-icon v-else icon="fa-solid fa-users" class="sidebar-item" /></a></p>
-            </li>
-            <li title="Talent Show" v-if="isTalentShowSeason()">
-                <p><a><font-awesome-icon icon="fa-solid fa-star" class="sidebar-item" /></a></p>
             </li>
             <li title="General Website Content" v-if="user.isExec">
                 <p><a><font-awesome-icon icon="fa-solid fa-globe" class="sidebar-item" /></a></p>

@@ -22,6 +22,8 @@
                 <Divider />
                 <Events id="events" :user="user" class="dash-section" @viewEvent="openEventModal" />
                 <Divider />
+                <Talent id="talent" :user="user" class="dash-section" @viewAct="openActModal" />
+                <Divider />
                 <Crew id="crew" :user="user" class="dash-section" />
                 <Divider />
             </div>
@@ -40,6 +42,7 @@ import Divider from './components/sectiondivider.vue'
 import Controls from './components/tools/controls/controls.vue'
 import Events from './components/tools/gigs/events.vue'
 import Crew from './components/tools/crew/crew.vue'
+import Talent from './components/tools/talent/talent.vue'
 
     export default {
         name: "App",
@@ -48,7 +51,8 @@ import Crew from './components/tools/crew/crew.vue'
             Controls,
             Events,
             Divider,
-            Crew
+            Crew,
+            Talent
         },
         props: {
             user: Object
@@ -59,6 +63,10 @@ import Crew from './components/tools/crew/crew.vue'
             },
             openEventModal(id) {
                 this.$router.replace(`/dash/event/${id}`)
+            },
+            openActModal(id) {
+                console.log(id)
+                this.$router.replace(`/dash/act/${id}`)
             }
         },
         emits: ['login', 'logoutRequest'],
