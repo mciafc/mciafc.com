@@ -8,7 +8,7 @@
                     <ActCard v-for="act in organizeByAuditionDay(acts)" :key="act.id" :act="act" :user="user" class="clickable flex-item" @viewAct="openActModal" />
                 </div>
                 <div v-else>
-                    <p>Nothing is scheduled right now.</p>
+                    <p>Nobody has registered yet.</p>
                 </div>
             </div>
             <div v-else key="2" class="upcoming-event-card-container">
