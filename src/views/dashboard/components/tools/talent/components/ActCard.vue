@@ -172,6 +172,7 @@
                     dates = dates.map((date) => {
                         return date.substring(0, date.length - 5);
                     })
+                    dates.push("AFC Discretion")
                     return dates
                 }
             }
