@@ -49,6 +49,10 @@
                 <button class="btn" style="scale: 1.5; margin-top: 30px;" @click="submitRegistration" v-if="!disableRegisterButton">REGISTER</button>
                 <button class="btn" style="scale: 1.5; margin-top: 30px;" v-else>REGISTERING...</button>
             </div>
+            <div class="signup-form" v-else>
+                <h1 class="registration-header">MAYBE NEXT YEAR...</h1>
+                <p class="registration-subheader">Unfortunately, talent show registrations are now closed. :( We hope to see you sign up for next year!!</p>
+            </div>
         </div>
         <div v-else class="signup-form-container">
             <div class="signup-form">
@@ -91,6 +95,12 @@ import io from "socket.io-client";
             this.socket = io("https://io.mciafc.com/talent")
         },
         mounted() {
+            fetch("https://api.mciafc.com/web")
+            .then(res => res.json())
+            .then(data => {
+                this.signupsOpen = data.allow_talent_show_signups;
+            })
+
             this.socket.on("newActRegistered", (newGig) => {
                 let data = newGig;
                 console.log(data);
