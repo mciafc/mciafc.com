@@ -2,6 +2,7 @@
     <div class="dashboard-section">
         <h2 class="section-header">Talent Show</h2>
         <p class="section-subtitle">See registrations for this year's talent show.</p>
+        <p class="minutes">Total Act Time: {{ totalActMinutes(acts) }} mins, {{ acts.length }} acts</p>
         <transition name="fade" mode="out-in">
             <div v-if="connected" key="1">
                 <div class="upcoming-event-card-container" v-if="acts.length > 0">
@@ -71,6 +72,16 @@ import EventCardSkeleton from './components/EventCardSkeleton.vue'
                         return a.auditionDay - b.auditionDay
                     })
                 }
+            },
+            totalActMinutes() {
+                return function (acts) {
+                    let total = 0
+                    acts.forEach(act => {
+                        total += act.actLength
+                    })
+                    return total
+                }
+            
             }
         }
     }
@@ -95,6 +106,11 @@ import EventCardSkeleton from './components/EventCardSkeleton.vue'
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.minutes {
+    font-size: 0.95rem;
+    margin: 0;
 }
 
 </style>
