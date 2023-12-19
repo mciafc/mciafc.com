@@ -188,10 +188,10 @@
     float: left;
     word-wrap: break-word;
     border-radius: 10px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     flex: 0 0 auto;
     height: 350px;
     overflow-x: hidden;
