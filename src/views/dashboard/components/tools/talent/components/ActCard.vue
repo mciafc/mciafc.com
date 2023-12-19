@@ -194,7 +194,7 @@
     padding-left: 10px;
     padding-right: 10px;
     flex: 0 0 auto;
-    height: 350px;
+    height: 420px;
     overflow-x: hidden;
     width: 400px;
     margin: 20px;
