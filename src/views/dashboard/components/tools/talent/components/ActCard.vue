@@ -189,15 +189,15 @@
     float: left;
     word-wrap: break-word;
     border-radius: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     flex: 0 0 auto;
     height: 420px;
     overflow-x: hidden;
     width: 400px;
-    margin: 20px;
+    margin: 10px;
 }
 
 button {
