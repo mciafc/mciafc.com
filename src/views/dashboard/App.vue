@@ -25,6 +25,8 @@
                 <Talent id="talent" :user="user" class="dash-section" @viewAct="openActModal" v-if="isTalentShowSeason" />
                 <Divider v-if="isTalentShowSeason" />
                 <Crew id="crew" :user="user" class="dash-section" />
+                <Divider v-if="user.isExec" />
+                <SiteControls id="sitecontrols" :user="user" class="dash-section" v-if="user.isExec" />
                 <Divider />
             </div>
         </div>
@@ -43,6 +45,7 @@ import Controls from './components/tools/controls/controls.vue'
 import Events from './components/tools/gigs/events.vue'
 import Crew from './components/tools/crew/crew.vue'
 import Talent from './components/tools/talent/talent.vue'
+import SiteControls from './components/tools/site-controls/site-controls.vue'
 
     export default {
         name: "App",
@@ -52,7 +55,8 @@ import Talent from './components/tools/talent/talent.vue'
             Events,
             Divider,
             Crew,
-            Talent
+            Talent,
+            SiteControls
         },
         props: {
             user: Object
