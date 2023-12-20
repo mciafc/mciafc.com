@@ -12,7 +12,7 @@
                     <div v-else key="3" class="membercards">
                         <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
                     </div>
-                    <h1>Goons</h1>
+                    <h1>General Members</h1>
                     <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
                     <br>
                     <div v-if="crew.length != 0" key="2" class="membercards">
