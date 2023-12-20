@@ -6,6 +6,7 @@
         <p class="description">{{ act.actDescription }}</p>
         <h3 class="description-header" style="font-size: 18px;">🕒 Act Duration: {{ act.actLength }} min(s)</h3>
         <h3 class="description-header" style="font-size: 18px;">🎤 Mics Needed: {{ act.actEquipment.mics }}</h3>
+        <h3 class="description-header" style="font-size: 18px;">👥 Members: {{ act.actMembers }}</h3>
         <h4 class="dateRange">📅 Audition Date: {{ auditionDates()[act.auditionDay - 1] }}</h4>
         <p class="registeredByOrganizer">Click to view more.</p>
     </div>
@@ -193,10 +194,10 @@
     padding-left: 20px;
     padding-right: 20px;
     flex: 0 0 auto;
-    height: 350px;
+    height: 420px;
     overflow-x: hidden;
     width: 400px;
-    margin: 20px;
+    margin: 10px;
 }
 
 button {

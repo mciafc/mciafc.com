@@ -90,7 +90,8 @@ import EventCardSkeleton from './components/EventCardSkeleton.vue'
 <style lang="css" scoped>
 .upcoming-event-card-container {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    justify-content: center;
     padding-bottom: 40px;
     scroll-behavior: smooth;
     padding-right: 40px;
