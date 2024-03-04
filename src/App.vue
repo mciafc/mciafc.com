@@ -5,7 +5,7 @@
         <li class="nav-item">
           <p><a class="navbar" @click="this.$router.push('/')">Home</a></p>
         </li>
-        <li class="nav-item" v-if="isTalentShowSeason">
+        <li class="nav-item" v-if="isTalentShowSeason()">
           <p><a class="navbar" @click="this.$router.push('/talent')">Talent Show</a></p>
         </li>
         <li class="nav-item">
