@@ -16,7 +16,7 @@
         </div>
         <div class="section3">
             <h1 class="section-heading">Meet the Crew</h1>
-            <p class="bodytext">All of the auditorium's functions are student run and led. We also are able to move equipment outside of the auditorium if your event is situated somewhere else in the school. We typically have a group of five or six Senior Executive Members in Grade 11 or 12 who do most of the work, and they're who you'll want to talk to about your event, and a large pool of General Members (otherwise known as "goons") to help with large shows when more people are needed.</p>
+            <p class="bodytext">All of the auditorium's functions are student run and led. We also are able to move equipment outside of the auditorium if your event is situated somewhere else in the school. We typically have a group of five or six Senior Executive Members in Grade 11 or 12 who do most of the work, and they're who you'll want to talk to about your event, and a large pool of General Members to help with large shows when more people are needed.</p>
             <p class="bodytext">For more information, get in contact with one of our Senior Execs or our Staff Advisor, Mr. Farrow.</p>
             <button class="btn" @click="this.$router.push('/contact')">CHECK OUT THE CREW</button>
         </div>
