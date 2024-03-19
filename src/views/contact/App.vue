@@ -7,8 +7,13 @@
         <div class="centerer">
             <div class="contact-container">
                 <div class="gen-inquiry">
-                    <h1 class="contact-header">General Inquiry & Booking</h1>
-                    <p class="contact-subtext">For general inquiries and third party booking, please contact <a class="hoverable" href="mailto:execs@mciafc.com" target="__blank">execs@mciafc.com</a>. This will get your message across to all Senior Executive members. Please allow up to 24 hours for a response.</p>
+                    <h1 class="contact-header">General Inquiries</h1>
+                    <p class="contact-subtext">For general inquiries, please contact <a class="hoverable" href="mailto:execs@mciafc.com" target="__blank">execs@mciafc.com</a>. This will get your message across to all Senior Executive members. Please allow up to 24 hours for a response.</p>
+                </div>
+                <div class="booking">
+                    <h1 class="booking-header">Third Party Booking</h1>
+                    <p class="booking-subtext">For third party booking, please contact our Staff Advisor and they will get you connected to school administration.</p>
+                    <MemberCard class="card" :user="findStaffAdvisor(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded" key="0"></MemberCard><skeletonmembercard key="1" v-else />
                 </div>
                 <h1 class="contact-header">Staff Advisor</h1>
                 <p class="contact-subtext">If you need to talk to somebody who has connections to the school administration, your best bet is by talking to our Staff Advisor.</p>
