@@ -13,7 +13,9 @@
                 <div class="booking">
                     <h1 class="booking-header">Third Party Booking</h1>
                     <p class="booking-subtext">For third party booking, please contact our Staff Advisor and they will get you connected to school administration.</p>
-                    <MemberCard class="card" :user="findStaffAdvisor(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded" key="0"></MemberCard><skeletonmembercard key="1" v-else />
+                    <transition name="fade" mode="out-in">
+                        <MemberCard class="card" :user="findStaffAdvisor(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded" key="0"></MemberCard><skeletonmembercard key="1" v-else />
+                    </transition>
                 </div>
                 <h1 class="contact-header">Staff Advisor</h1>
                 <p class="contact-subtext">If you need to talk to somebody who has connections to the school administration, your best bet is by talking to our Staff Advisor.</p>
@@ -194,6 +196,12 @@ import io from "socket.io-client"
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.booking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .exec-contact-info-container {
