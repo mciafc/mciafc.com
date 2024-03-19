@@ -22,8 +22,8 @@
                 <Divider />
                 <Events id="events" :user="user" class="dash-section" @viewEvent="openEventModal" />
                 <Divider />
-                <Talent id="talent" :user="user" class="dash-section" @viewAct="openActModal" v-if="isTalentShowSeason" />
-                <Divider v-if="isTalentShowSeason" />
+                <Talent id="talent" :user="user" class="dash-section" @viewAct="openActModal" v-if="isTalentShowSeason()" />
+                <Divider v-if="isTalentShowSeason()" />
                 <Crew id="crew" :user="user" class="dash-section" />
                 <Divider v-if="user.isExec" />
                 <SiteControls id="sitecontrols" :user="user" class="dash-section" v-if="user.isExec" />
@@ -76,7 +76,7 @@ import SiteControls from './components/tools/site-controls/site-controls.vue'
         emits: ['login', 'logoutRequest'],
         computed: {
             isTalentShowSeason() {
-                return () => {
+                return function() {
                     let now = new Date()
                     let month = now.getMonth()
                     // if it's between november and december, it's talent show season
