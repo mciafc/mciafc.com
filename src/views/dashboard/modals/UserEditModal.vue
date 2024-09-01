@@ -209,7 +209,8 @@ import profilepicture from './components/profilepicture.vue'
                             'Vice President': 3,
                             'Exec': 4,
                             'Member': 5,
-                            'Webmaster': -1,
+                            'Webmaster': -2,
+                            'Website Admin Account': -1
                         }
                         // get the position of the user
                         let userPosition = user.memberInfo.position

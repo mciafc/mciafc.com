@@ -224,6 +224,9 @@ html {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-wrap: nowrap;
 }
 
 .nav-item {
