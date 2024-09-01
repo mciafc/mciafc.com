@@ -29,6 +29,12 @@
       </div>
     </ul>
   </header>
+  <header class="unselectable status-header" v-if="status_header != '' && status_header != null">
+    <div class="status-container">
+      <font-awesome-icon icon="fa-solid fa-triangle-exclamation" />
+      <p>{{ status_header }}</p>
+    </div>
+  </header>
   <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
     <Transition :name="route.meta.transition || 'slide-fade'" :mode=" route.meta.transitionmode || 'out-in'">
       <div :key="route.name">
@@ -69,7 +75,8 @@ export default {
   data() {
     return {
       dropdownVisible: null,
-      user: null
+      user: null,
+      status_header: null
     }
   },
   methods: {
@@ -89,6 +96,13 @@ export default {
       this.$router.push('/')
       this.user = null
     }
+  },
+  mounted() {
+    fetch('https://api.mciafc.com/web')
+      .then(response => response.json())
+      .then(data => {
+        this.status_header = data.status_header
+      })
   },
   computed: {
     changeLoginIcon() {
@@ -170,6 +184,29 @@ html {
   font-weight: 600;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.status-header {
+  background-color: #ffd000;
+  color: #000000;
+  box-shadow: 0px 0px 20px rgba(12, 12, 12, 0.75);
+  display: block;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  height: 50px;
+  z-index: 1000000;
+  font-weight: 400;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.status-container {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .nav-item {

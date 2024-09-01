@@ -28,9 +28,10 @@ import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 
-library.add(faUserSecret, faCaretDown, faUser, faToolbox, faToggleOn, faCalendar, faUsersGear, faUsers, faTicket, faGlobe, faStar, faRightFromBracket, faEnvelope, faInstagram, faFacebook, faTwitter, faLinkedin, faUserPen, faYoutube, faGithub, faUserPlus )
+library.add(faUserSecret, faCaretDown, faUser, faToolbox, faToggleOn, faCalendar, faUsersGear, faUsers, faTicket, faGlobe, faStar, faRightFromBracket, faEnvelope, faInstagram, faFacebook, faTwitter, faLinkedin, faUserPen, faYoutube, faGithub, faUserPlus, faTriangleExclamation )
 
 
 let app = createSSRApp(App);

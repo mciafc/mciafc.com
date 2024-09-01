@@ -13,7 +13,7 @@
                         <CrewMemberCardSkeleton v-for="n in 9" :key="n" />
                     </div>
                     <h1>General Members</h1>
-                    <font-awesome-icon icon="fa-user-plus" v-if="user.isExec" class="new-goon-button" />
+                    <font-awesome-icon icon="fa-user-plus" v-if="user.Email == 'execs@mciafc.com'" class="new-goon-button" />
                     <br>
                     <div v-if="crew.length != 0" key="2" class="membercards">
                         <CrewMemberCard v-for="(crewmember, index) in sortCrew(crew.members)" :key="index" :user="crewmember" :loggedInUser="user" />
@@ -96,6 +96,7 @@ import io from 'socket.io-client'
                         'Exec': 4,
                         'Member': 5,
                         'Webmaster': 6,
+                        'Website Admin Account': -1 // Special case for the website admin account which should be higher than everything else.
                     }
 
                     return crew.sort((a, b) => {
