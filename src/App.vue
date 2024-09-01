@@ -29,19 +29,23 @@
       </div>
     </ul>
   </header>
-  <header class="unselectable status-header" v-if="status_header != '' && status_header != null">
-    <div class="status-container">
-      <font-awesome-icon icon="fa-solid fa-triangle-exclamation" />
-      <p>{{ status_header }}</p>
-    </div>
-  </header>
-  <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
-    <Transition :name="route.meta.transition || 'slide-fade'" :mode=" route.meta.transitionmode || 'out-in'">
-      <div :key="route.name">
-        <component :is="Component"></component>
+  <div v-if="status_header != '' && status_header != null">
+    <header class="unselectable status-header">
+      <div class="status-container">
+        <font-awesome-icon icon="fa-solid fa-triangle-exclamation" />
+        <p>{{ status_header }}</p>
       </div>
-    </Transition>
-  </router-view>
+    </header>
+  </div>
+  <div :class="{ buffer: isStatusHeaderActive }">
+    <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
+      <Transition :name="route.meta.transition || 'slide-fade'" :mode=" route.meta.transitionmode || 'out-in'">
+        <div :key="route.name">
+          <component :is="Component"></component>
+        </div>
+      </Transition>
+    </router-view>
+  </div>
   <footer class="footer">
       <div class="footer-section">
         <p class="footer-heading">Explore</p>
@@ -123,6 +127,15 @@ export default {
           return false
         }
       }
+    },
+    isStatusHeaderActive() {
+      return function() {
+        if (this.status_header != '' && this.status_header != null) {
+          return true
+        } else {
+          return false
+        }
+      }
     }
   }
 }
@@ -142,6 +155,10 @@ h1, h2, h3, h4 {
 .view {
   min-height: 98vh;
   margin: 0;
+}
+
+.buffer {
+  padding-top: 50px;
 }
 
 body {
