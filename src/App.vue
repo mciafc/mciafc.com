@@ -49,15 +49,14 @@
   <footer class="footer">
       <div class="footer-section">
         <p class="footer-heading">Explore</p>
-        <a class="footer-link">Auditorium</a>
-        <a class="footer-link">Book</a>
-        <a class="footer-link">Crew</a>
+        <a class="footer-link" @click="this.$router.push('/auditorium')">Auditorium</a>
+        <a class="footer-link" @click="this.$router.push('/book')">Book</a>
       </div>
       <div class="footer-section">
         <p class="footer-heading">Contacts</p>
         <a class="footer-text">50 Winterton Dr</a>
-        <a class="footer-link">Contact</a>
-        <a class="footer-link">Donate</a>
+        <a class="footer-link" @click="this.$router.push('/contact')">Contact</a>
+        <!-- <a class="footer-link">Donate</a> -->
       </div>
       <div class="footer-section connect-section">
         <p class="footer-heading">Connect</p>
@@ -67,7 +66,7 @@
       <div class="footer-section general-info right-side">
         <p class="footer-heading">Site Info</p>
         <p class="footer-text">Created & managed by <a class="footer-link" href="https://github.com/carreb" target="__blank"><font-awesome-icon icon-="fa-brands fa-github" />caleb</a></p>
-        <a class="footer-link" href="mailto:webadmin@mciafc.com">Webmaster Contact</a>
+        <a class="footer-link" href="mailto:webadmin@mciafc.com">Web Admin Contact</a>
       </div>
   </footer>
 </template>
