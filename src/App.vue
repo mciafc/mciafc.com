@@ -37,7 +37,7 @@
       </div>
     </header>
   </div>
-  <div :class="{ buffer: isStatusHeaderActive }">
+  <div :class="{ buffer: isStatusHeaderActive() }">
     <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
       <Transition :name="route.meta.transition || 'slide-fade'" :mode=" route.meta.transitionmode || 'out-in'">
         <div :key="route.name">
