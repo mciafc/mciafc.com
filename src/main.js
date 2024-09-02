@@ -51,6 +51,7 @@ import AuditoriumPage from './views/auditorium/App.vue';
 import ActModal from './views/dashboard/modals/ActModal.vue';
 import ActOrganizerInfoModal from './views/dashboard/modals/ActOrganizerInfoModal.vue';
 import ActDeletionModal from './views/dashboard/modals/ActDeletionModal.vue';
+import NewUserCreationPage from './views/create-new-user/App.vue'
 
 const routes = [
     { path: '/', component: Home, name: "home" },
@@ -68,6 +69,7 @@ const routes = [
     { path: '/contact', component: ContactPage, name: "Contact"},
     { path: '/book', component: BookPage, name: "Book"},
     { path: '/auditorium', component: AuditoriumPage, name: "Auditorium"},
+    { path: '/create-new-user', component: NewUserCreationPage, name: "Create New User Account"},
     { path: '/:pathMatch(.*)*', component: FourOhFour, name: "404"}
 ];
 

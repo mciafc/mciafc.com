@@ -33,7 +33,7 @@
     <header class="unselectable status-header">
       <div class="status-container">
         <font-awesome-icon icon="fa-solid fa-triangle-exclamation" />
-        <p>{{ status_header }}</p>
+        <p>{{ status_header }} <a class="black-link" href="https://martingroveafc.statuspage.io" target="__blank">View Status</a></p>
       </div>
     </header>
   </div>
@@ -393,5 +393,11 @@ a.navbar:hover {
   align-items: right;
   margin-right: 10px;
   width: 300px;
+}
+
+.black-link {
+  color: #000000;
+  font-weight: 600;
+  text-decoration: underline;
 }
 </style>

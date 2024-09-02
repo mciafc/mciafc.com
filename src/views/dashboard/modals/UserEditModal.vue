@@ -26,7 +26,10 @@
                     <a class="social-icon"><font-awesome-icon icon="fa-brands fa-facebook" /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.facebook" placeholder="your facebook tag (facebook.com/[this part])" maxlength="50">
                     <a class="social-icon"><font-awesome-icon icon="fa-brands fa-linkedin" /></a> <input type="text" class="social-input" v-model="selectedusermodel.socials.linkedin" placeholder="your linkedin tag (linkedin.com/in/[this part])" maxlength="100">
                 </div>
-                <button @click="saveData()">SAVE CHANGES</button>
+                <div class="archival-and-removal" v-if="user.Email == 'execs@mciafc.com'">
+                    <button @click="archiveUser()">Archive User</button>
+                </div>
+                <button style="font-size: 18px;" @click="saveData()">SAVE CHANGES</button>
             </div>
             <div v-else key="1">
                 <h1>Fetching user card...</h1>
@@ -71,10 +74,26 @@ import profilepicture from './components/profilepicture.vue'
         },
         methods: {
             toggleExecStatus() {
-                console.log(this.allowedToEditPosition())
-                if (this.allowedToEditPosition()) {
-                    return this.selectedusermodel.isExec = !this.selectedusermodel.isExec
+                if (this.$props.user.Email == 'execs@mciafc.com') {
+                    this.selectedusermodel.isExec = !this.selectedusermodel.isExec
                 }
+            },
+            archiveUser() {
+                fetch(`https://api.mciafc.com/crew/update/${this.selecteduser._id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        is_archived: true,
+                        archival_date: new Date()
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    this.saveData()
+                })
             },
             saveData() {
                 fetch(`https://api.mciafc.com/crew/update/${this.selecteduser._id}`, {
@@ -132,6 +151,7 @@ import profilepicture from './components/profilepicture.vue'
                                 this.$router.push('/dash')
                             })
                         }
+                        this.$router.push('/dash')
                     })
                 })
             }
@@ -210,7 +230,7 @@ import profilepicture from './components/profilepicture.vue'
                             'Exec': 4,
                             'Member': 5,
                             'Webmaster': -2,
-                            'Website Admin Account': -1
+                            'Website Admin Account': -3
                         }
                         // get the position of the user
                         let userPosition = user.memberInfo.position
@@ -237,18 +257,24 @@ import profilepicture from './components/profilepicture.vue'
                             'Vice President': 3,
                             'Exec': 4,
                             'Member': 5,
-                            'Webmaster': -1,
+                            'Webmaster': -2,
+                            'Website Admin Account': -1
                         }
                         // get the position of the user
                         let userPosition = user.memberInfo.position
                         // get the position of the selecteduser
                         let selecteduserPosition = selecteduser.memberInfo.position
 
-                        if (['Staff Advisor', 'President', 'Co-President', 'Vice President'].includes(userPosition)) {
+                        if (['Staff Advisor', 'President', 'Co-President', 'Vice President', 'Website Admin Account'].includes(userPosition)) {
                             return positionHierarchy[selecteduserPosition] > positionHierarchy[userPosition]
                         }
                     }
                     return false
+                }
+            },
+            getUser() {
+                return function() {
+                    return this.user
                 }
             }
         }
@@ -265,7 +291,7 @@ import profilepicture from './components/profilepicture.vue'
     right: 0;
     background-color: #292929;
     width: 500px;
-    height: 550px;
+    height: 600px;
     z-index: 100;
     padding-top: 15px;
     border-radius: 8px;
@@ -380,5 +406,14 @@ import profilepicture from './components/profilepicture.vue'
 
 .editPosition:hover {
     scale: 1.5;
+}
+
+.archival-and-removal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 </style>
