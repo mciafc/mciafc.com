@@ -29,25 +29,34 @@
       </div>
     </ul>
   </header>
-  <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
-    <Transition :name="route.meta.transition || 'slide-fade'" :mode=" route.meta.transitionmode || 'out-in'">
-      <div :key="route.name">
-        <component :is="Component"></component>
+  <div v-if="status_header != '' && status_header != null">
+    <header class="unselectable status-header">
+      <div class="status-container">
+        <font-awesome-icon icon="fa-solid fa-triangle-exclamation" />
+        <p>{{ status_header }} <a class="black-link" href="https://martingroveafc.statuspage.io" target="__blank">View Status</a></p>
       </div>
-    </Transition>
-  </router-view>
+    </header>
+  </div>
+  <div :class="{ buffer: isStatusHeaderActive() }">
+    <router-view class="view" v-slot="{ Component, route }" @login="logUserIn" @logoutRequest="logUserOut" :user="user">
+      <Transition :name="route.meta.transition || 'slide-fade'" :mode=" route.meta.transitionmode || 'out-in'">
+        <div :key="route.name">
+          <component :is="Component"></component>
+        </div>
+      </Transition>
+    </router-view>
+  </div>
   <footer class="footer">
       <div class="footer-section">
         <p class="footer-heading">Explore</p>
-        <a class="footer-link">Auditorium</a>
-        <a class="footer-link">Book</a>
-        <a class="footer-link">Crew</a>
+        <a class="footer-link" @click="this.$router.push('/auditorium')">Auditorium</a>
+        <a class="footer-link" @click="this.$router.push('/book')">Book</a>
       </div>
       <div class="footer-section">
         <p class="footer-heading">Contacts</p>
         <a class="footer-text">50 Winterton Dr</a>
-        <a class="footer-link">Contact</a>
-        <a class="footer-link">Donate</a>
+        <a class="footer-link" @click="this.$router.push('/contact')">Contact</a>
+        <!-- <a class="footer-link">Donate</a> -->
       </div>
       <div class="footer-section connect-section">
         <p class="footer-heading">Connect</p>
@@ -57,7 +66,7 @@
       <div class="footer-section general-info right-side">
         <p class="footer-heading">Site Info</p>
         <p class="footer-text">Created & managed by <a class="footer-link" href="https://github.com/carreb" target="__blank"><font-awesome-icon icon-="fa-brands fa-github" />caleb</a></p>
-        <a class="footer-link" href="mailto:webadmin@mciafc.com">Webmaster Contact</a>
+        <a class="footer-link" href="mailto:webadmin@mciafc.com">Web Admin Contact</a>
       </div>
   </footer>
 </template>
@@ -69,7 +78,8 @@ export default {
   data() {
     return {
       dropdownVisible: null,
-      user: null
+      user: null,
+      status_header: null
     }
   },
   methods: {
@@ -90,6 +100,13 @@ export default {
       this.user = null
     }
   },
+  mounted() {
+    fetch('https://api.mciafc.com/web')
+      .then(response => response.json())
+      .then(data => {
+        this.status_header = data.status_header
+      })
+  },
   computed: {
     changeLoginIcon() {
       return function(user) {
@@ -104,6 +121,15 @@ export default {
       return function() {
         let month = new Date().getMonth()
         if (month == 10 || month == 11) {
+          return true
+        } else {
+          return false
+        }
+      }
+    },
+    isStatusHeaderActive() {
+      return function() {
+        if (this.status_header != '' && this.status_header != null) {
           return true
         } else {
           return false
@@ -128,6 +154,10 @@ h1, h2, h3, h4 {
 .view {
   min-height: 98vh;
   margin: 0;
+}
+
+.buffer {
+  padding-top: 50px;
 }
 
 body {
@@ -170,6 +200,32 @@ html {
   font-weight: 600;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.status-header {
+  background-color: #ffd000;
+  color: #000000;
+  box-shadow: 0px 0px 20px rgba(12, 12, 12, 0.75);
+  display: block;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  height: 50px;
+  z-index: 1000000;
+  font-weight: 400;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.status-container {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-wrap: nowrap;
 }
 
 .nav-item {
@@ -336,5 +392,11 @@ a.navbar:hover {
   align-items: right;
   margin-right: 10px;
   width: 300px;
+}
+
+.black-link {
+  color: #000000;
+  font-weight: 600;
+  text-decoration: underline;
 }
 </style>

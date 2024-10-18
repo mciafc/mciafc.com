@@ -28,7 +28,7 @@
                 <h1 class="contact-header">Website Contact</h1>
                 <p class="contact-subtext">For questions, comments, concerns, quips, quibbles, conundrums, or connections relating to the AFC website, reach our Web Director at <a class="hoverable" href="mailto:webadmin@mciafc.com">webadmin@mciafc.com</a>. This email should only be used for website concerns.</p>
                 <transition name="fade" mode="out-in">
-                    <MemberCard key="0" class="card" :user="findWebmaster(execs.execs)" :loggedInUser="fakeuser" v-if="execsLoaded"></MemberCard><skeletonmembercard key="1" v-else />
+                    <MemberCard key="0" class="card" :user="findWebmaster(execs.members)" :loggedInUser="fakeuser" v-if="execsLoaded"></MemberCard><skeletonmembercard key="1" v-else />
                 </transition>
             </div>
         </div>
