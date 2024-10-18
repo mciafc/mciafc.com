@@ -9,7 +9,7 @@
         <div class="signup-form-container" v-if="!registrationComplete">
             <div class="signup-form" v-if="!registrationComplete && signupsOpen">
                 <h1 class="registration-header">CALLING FOR AUDITIONS</h1>
-                <p class="registration-subheader">Got talent? Sign up to audition for the {{ new Date().getFullYear() }} Winter Talent Show, which will take place on <b>{{ dateStringExpander(estimatedTalentShowDate().toDateString()) }}</b>! It can be anything! Singing, dancing, a skit, a magic show, comedy, you name it! Clubs can also sign up to have an act, or they can make a video. Clubs do not need to register here if they are making a video.</p>
+                <p class="registration-subheader">Got talent? Sign up to audition for the {{ new Date().getFullYear() }} Winter Talent Show, which will take place on <b>{{ dateStringExpander(estimatedTalentShowDate().toDateString()) }}</b>! It can be anything! Singing, dancing, a skit, a magic show, comedy, you name it! Clubs can also sign up to have an act, or they can make a video. Clubs do not need to register here <u><b>if they are making a video.</b></u></p>
                 <h2 class="registration-section-header">Organizer Information</h2>
                 <p class="registration-section-description">Some information about you, so we can get in contact. By signing up, you will be the 'leader' of your group, and will be the one we will communicate with regarding auditions and other processes with your act.</p>
                 <h3 class="information-header">Registering on behalf of a Club?</h3>
@@ -40,12 +40,12 @@
                 <h2 class="registration-section-header">Additional Information</h2>
                 <p class="registration-section-description">Anything else you want to tell us? Put it here.</p>
                 <textarea class="textarea-input" type="text" v-model="talentShowRegistration.additionalInfo" placeholder="e.g. We are a group of magicians who will be performing a magic show."></textarea>
-                <!-- <h3 class="information-header">Audition Date*</h3> 
+                <h3 class="information-header">Audition Date*</h3> 
                 <p class="information-section-description">Select the day that you would like to audition. All auditions take place in the Auditorium after school.</p>
                 <select class="dropdown-input" v-model="talentShowRegistration.auditionDay" @click="console.log(talentShowRegistration.auditionDay)">
                     <option value="0">Select date</option>
                     <option v-for="(date, index) in auditionDates()" :key="index" :value="index + 1">{{ date }}</option>
-                </select>-->
+                </select>
                 <button class="btn" style="scale: 1.5; margin-top: 30px;" @click="submitRegistration" v-if="!disableRegisterButton">REGISTER</button>
                 <button class="btn" style="scale: 1.5; margin-top: 30px;" v-else>REGISTERING...</button>
             </div>
