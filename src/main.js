@@ -52,6 +52,7 @@ import ActModal from './views/dashboard/modals/ActModal.vue';
 import ActOrganizerInfoModal from './views/dashboard/modals/ActOrganizerInfoModal.vue';
 import ActDeletionModal from './views/dashboard/modals/ActDeletionModal.vue';
 import NewUserCreationPage from './views/create-new-user/App.vue'
+import SingleTalentView from './views/talent/SingleTalentView.vue';
 
 const routes = [
     { path: '/', component: Home, name: "home" },
@@ -66,6 +67,7 @@ const routes = [
         { path: 'act/:id/delete', component: ActDeletionModal, name: "dashboard - Delete Act", meta: { modal: true }},
     ] },
     { path: '/talent', component: Talent, name: "Talent Show"},
+    { path: '/talent/act/:id', component: SingleTalentView, name: "Talent Show Act"},
     { path: '/contact', component: ContactPage, name: "Contact"},
     { path: '/book', component: BookPage, name: "Book"},
     { path: '/auditorium', component: AuditoriumPage, name: "Auditorium"},
