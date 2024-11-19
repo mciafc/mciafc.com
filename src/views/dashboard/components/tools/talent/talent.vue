@@ -3,6 +3,7 @@
         <h2 class="section-header">Talent Show</h2>
         <p class="section-subtitle">See registrations for this year's talent show.</p>
         <p class="minutes">Total Act Time: {{ totalActMinutes(acts) }} mins, {{ acts.length }} acts</p>
+        <a :href="`https://api.mciafc.com/talent/spreadsheet/${new Date().getFullYear()}`" class="section-link">Download production manager spreadsheet</a>
         <transition name="fade" mode="out-in">
             <div v-if="connected" key="1">
                 <div class="upcoming-event-card-container" v-if="acts.length > 0">
