@@ -1,6 +1,6 @@
 <template>
     <div class="event" v-if="act.gigName != 'do not delete this'" @click="this.$emit('viewAct', act._id)">
-        <h1 class="eventName">{{ act.actName }}</h1>
+        <h1 class="gigName">{{ act.actName }}</h1>
         <h3 class="organizationName">By: <span v-if="act.isClub" style="color: cornflowerblue">CLUB</span> {{ act.organizerName }}</h3>
         <h3 class="description-header">Description:</h3>
         <p class="description">{{ act.actDescription }}</p>
