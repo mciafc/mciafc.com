@@ -40,9 +40,9 @@
                 <h2 class="registration-section-header">Additional Information</h2>
                 <p class="registration-section-description">Anything else you want to tell us? Put it here.</p>
                 <textarea class="textarea-input" type="text" v-model="talentShowRegistration.additionalInfo" placeholder="e.g. We are a group of magicians who will be performing a magic show."></textarea>
-                <h3 class="information-header">Audition Date*</h3> 
-                <p class="information-section-description">Select the day that you would like to audition. All auditions take place in the Auditorium after school.</p>
-                <select class="dropdown-input" v-model="talentShowRegistration.auditionDay" @click="console.log(talentShowRegistration.auditionDay)">
+                <h3 class="information-header" style="display: none;">Audition Date*</h3> 
+                <p class="information-section-description" style="display: none;">Select the day that you would like to audition. All auditions take place in the Auditorium after school.</p>
+                <select class="dropdown-input" v-model="talentShowRegistration.auditionDay" @click="console.log(talentShowRegistration.auditionDay)" style="display: none;">
                     <option value="0">Select date</option>
                     <option v-for="(date, index) in auditionDates()" :key="index" :value="index + 1">{{ date }}</option>
                 </select>
