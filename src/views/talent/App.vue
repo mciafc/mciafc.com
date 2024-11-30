@@ -30,7 +30,7 @@
                 <h3 class="information-header">Act Description*</h3>
                 <textarea class="textarea-input" type="text" v-model="talentShowRegistration.actDescription" placeholder="e.g. We are a group of magicians who will be performing a magic show."></textarea>
                 <h3 class="registration-section-header">Equipment</h3>
-                <p class="registration-section-description">What kind of equipment will your act need? View a comprehensive list of our equipment <a class="hoverable" href="https://sets.mciafc.com/equipment">here</a>.</p>
+                <p class="registration-section-description">What kind of equipment will your act need?</p>
                 <h3 class="information-header">Microphones</h3>
                 <p class="information-section-description">We have 2 wireless mics. Any act which needs more than 2 microphones will have to arrange that with us.</p>
                 <input class="text-input" type="number" v-model="talentShowRegistration.actEquipment.mics" min="0" max="2"/>
