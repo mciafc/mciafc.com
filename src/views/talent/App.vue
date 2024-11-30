@@ -35,7 +35,7 @@
                 <p class="information-section-description">We have 2 wireless mics. Any act which needs more than 2 microphones will have to arrange that with us.</p>
                 <input class="text-input" type="number" v-model="talentShowRegistration.actEquipment.mics" min="0" max="2"/>
                 <h3 class="information-header">Other Equipment</h3>
-                <p class="information-section-description">If you need any other equipment, please list it here. Please check <a class="hoverable" href="https://sets.mciafc.com/equipment" target="__blank">our list of equipment</a> before requesting. If we don't have it listed there, we may be able to arrange something.</p>
+                <p class="information-section-description">If you need any other equipment, please list it here.</p>
                 <textarea class="textarea-input" type="text" v-model="talentShowRegistration.actEquipment.other" placeholder="e.g We need a stage monitor and a microphone stand."></textarea>
                 <h2 class="registration-section-header">Additional Information</h2>
                 <p class="registration-section-description">Anything else you want to tell us? Put it here.</p>
