@@ -65,7 +65,7 @@
       </div>
       <div class="footer-section general-info right-side">
         <p class="footer-heading">Site Info</p>
-        <p class="footer-text">Created & managed by <a class="footer-link" href="https://github.com/carreb" target="__blank"><font-awesome-icon icon-="fa-brands fa-github" />caleb</a></p>
+        <p class="footer-text">Created & managed by <a class="footer-link" href="https://github.com/carreb" target="__blank"><font-awesome-icon icon-="fa-brands fa-github" />claire</a></p>
         <a class="footer-link" href="mailto:webadmin@mciafc.com">Web Admin Contact</a>
       </div>
   </footer>
