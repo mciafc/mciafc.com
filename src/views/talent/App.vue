@@ -54,7 +54,7 @@
                         <h1 class="registration-header">CHECK BACK LATER</h1>
                         <p class="registration-subheader">It looks like talent show registrations are currently unavailable. If you think this is an error, contact your AFC Executives!!</p>
                     </div>
-                    <div v-else>
+                    <div class="signup-form" v-else>
                         <h1 class="registration-header">MAYBE NEXT YEAR...</h1>
                         <p class="registration-subheader">Unfortunately, talent show registrations are now closed. :( We hope to see you sign up for next year!!</p>
                     </div>
