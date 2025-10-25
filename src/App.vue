@@ -120,7 +120,7 @@ export default {
     isTalentShowSeason() {
       return function() {
         let month = new Date().getMonth()
-        if (month == 10 || month == 11) {
+        if (month >= 9) {
           return true
         } else {
           return false
