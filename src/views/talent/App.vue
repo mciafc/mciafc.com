@@ -50,7 +50,11 @@
                 <button class="btn" style="scale: 1.5; margin-top: 30px;" v-else>REGISTERING...</button>
             </div>
             <div class="signup-form" v-else>
-                <h1 class="registration-header">MAYBE NEXT YEAR...</h1>
+                    <div class="signup-form" v-if="new Date().getMonth >=9 && new Date.getMonth() < 11">
+                        <h1 class="registration-header">CHECK BACK LATER</h1>
+                        <p class="registration-subheader">It looks like talent show registrations are currently unavailable. If you think this is an error, contact your AFC Executives!!</p>
+                    </div>
+                <h1 class="registration-header" v-else>MAYBE NEXT YEAR...</h1>
                 <p class="registration-subheader">Unfortunately, talent show registrations are now closed. :( We hope to see you sign up for next year!!</p>
             </div>
         </div>
