@@ -107,7 +107,7 @@ import io from "socket.io-client"
             return (crew) => {
                 // get a list of all the webmasters
                 let webmasters = crew.filter((member) => {
-                    return member.FirstName == "claire" && member.LastName == ":)"
+                    return member.FirstName == "claire" && member.LastName == "strafford"
                 })
                 // return the first webmaster in the list
                 let webmaster = webmasters[0]
